@@ -1,7 +1,8 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// A commenter lors de mise en production
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 
 
 session_start();

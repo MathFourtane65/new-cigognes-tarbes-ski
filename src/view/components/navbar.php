@@ -48,7 +48,7 @@
 
 
                 <li class="nav-item nav-item-connexion">
-                    <a href="/connexion-licencie" class="nav-link">Connexion</a>
+                    <a href="/connexion-licencie" class="nav-link disabled">Connexion</a>
                 </li>
 
 
