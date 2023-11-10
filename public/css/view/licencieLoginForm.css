@@ -1,0 +1,15 @@
+/* licencieLoginForm.css */
+
+
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.logo-form-conn-licencie {
+        width: 60%;
+        height: auto;
+}
+
+.card-header {
+    background-color: #ffffff;
+}

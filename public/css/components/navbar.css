@@ -1,0 +1,20 @@
+/* /public/css/components/navbar.css */
+
+.custom-navbar {
+    background-color: #fff; /* couleur blanche */
+}
+
+.nav-link {
+    color: #000; /* couleur noire */
+    margin-right: 10px; /* ajustez l'espacement entre les liens selon vos besoins */
+}
+
+/* centrage et largeur de la barre de navigation */
+/* .navbar-container {
+    margin: auto;
+    width: 70%;
+} */
+
+.nav-item-connexion {
+    font-weight: bold;
+}

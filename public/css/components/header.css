@@ -1,0 +1,28 @@
+.nom-section-logo {
+    color: red;
+    font-style: italic;
+    border-bottom: 2px solid red;
+    display: inline-block;
+    width: 100%;
+}
+
+
+@media (max-width: 600px) {
+    .nom-section-logo {
+        font-size: 24px;
+    }
+    .logo-header {
+        width: 60%;
+        height: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .nom-section-logo {
+        font-size: 34px;
+    }
+    .logo-header {
+        width: 30%;
+        height: auto;
+    }
+}

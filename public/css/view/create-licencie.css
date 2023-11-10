@@ -1,0 +1,22 @@
+.create-licencie-form {
+    width: 80%;
+    text-align: left;
+    margin-top: 20px;
+    border: red 2px solid;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.titre-section-form{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.champ-obligatoire {
+    font-weight: bold;
+    color: red;
+}
+
+.consigne-formulaire {
+    font-style: italic;
+}
