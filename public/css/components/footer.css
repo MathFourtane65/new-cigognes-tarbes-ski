@@ -1,0 +1,14 @@
+.footer {
+  padding: 20px;
+    /* margin-top: 10px; */
+}
+
+.footer p {
+    margin-top: 10px;
+}
+
+.lien-mathieu-footer {
+    text-decoration: underline;
+    color: black;
+    font-weight: bold;
+}

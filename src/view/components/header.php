@@ -22,4 +22,11 @@
     <div>
         <img src="/images/logo.png" class="img-fluid logo-header" alt="Club Logo" />
         <h2 class="nom-section-logo">SECTION SKI</h2>
+
+        <div class="marquee-rtl">
+      <div>
+      FLASH INFO : Le site internet est actuellement en train d'être mis à jour pour la saison à venir.
+      </div>
+    </div>
+
     </div>

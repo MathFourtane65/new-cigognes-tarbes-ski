@@ -26,3 +26,66 @@
         height: auto;
     }
 }
+
+
+
+/* BANDEAU ACTUALITES RESPONSIVE */
+.marquee-rtl {
+    margin: 0 auto;
+    max-width: 80%;     /* largeur de la fenêtre */
+    /* margin: 1px auto 2px; */
+    border: double white;
+    overflow: hidden;   /* masque tout ce qui dépasse */
+    box-shadow:0 0 15px red;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+    /* margin-bottom: 20px; */
+}
+.marquee-rtl > :first-child {
+    font-size: 25px;
+    display: inline-block;       /* modèle de boîte en ligne */
+    padding-right: 2em;          /* un peu d'espace pour la transition */
+    padding-left: 100%;          /* placement à droite du conteneur */
+    white-space: nowrap;         /* pas de passage à la ligne */
+    animation: defilement-rtl 15s infinite linear;
+}
+@keyframes defilement-rtl {
+    0% {
+      transform: translate3d(0,0,0);      /* position initiale à droite */
+    }
+    100% {
+      transform: translate3d(-100%,0,0);  /* position finale à gauche */
+    }
+}
+
+@media (max-width: 800px) { 
+    .marquee-rtl {
+        max-width: 70%;     /* largeur de la fenêtre */
+        /* margin: 1px auto 2px; */
+        border: double white;
+        overflow: hidden;   /* masque tout ce qui dépasse */
+        box-shadow:0 0 5px red;
+        background-color: red;
+        color: white;
+        font-weight: bold;
+        /* margin-bottom: 20px; */
+    }
+    .marquee-rtl > :first-child {
+        font-size: 18px;
+        display: inline-block;       /* modèle de boîte en ligne */
+        padding-right: 2em;          /* un peu d'espace pour la transition */
+        padding-left: 100%;          /* placement à droite du conteneur */
+        white-space: nowrap;         /* pas de passage à la ligne */
+        animation: defilement-rtl 15s infinite linear;
+    }
+    @keyframes defilement-rtl {
+        0% {
+          transform: translate3d(0,0,0);      /* position initiale à droite */
+        }
+        100% {
+          transform: translate3d(-100%,0,0);  /* position finale à gauche */
+        }
+    }
+  } 

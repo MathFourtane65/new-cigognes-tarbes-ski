@@ -1,0 +1,26 @@
+#cadre{
+    border: 3px solid red;
+    max-width: 85%;
+    margin: auto;
+    border-radius: 80px;
+}
+
+#texte {
+    font-size: 20px;
+    margin: auto;
+    margin-top: 5px; 
+    margin-bottom: 5px; 
+    max-width: 80%;
+    text-align: center;   
+}
+
+#titre-accueil {
+    font-size: 40px;
+    text-align: center;
+    font-family: "Copperplate";
+}
+
+img {
+    width: 50%;
+    height: auto;
+}

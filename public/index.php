@@ -13,12 +13,14 @@ include '../src/model/Licencie.php';
 include '../src/controller/AdminLoginController.php';
 include '../src/controller/LicencieController.php';
 include '../src/controller/HomePageController.php';
+include '../src/controller/BureauPageController.php';
 
 $adminModel = new Administrateur($db);
 $licencieModel = new Licencie($db);
 $adminLoginController = new AdminLoginController($adminModel);
 $licencieController = new LicencieController($licencieModel);
 $homePageController = new HomePageController();
+$bureauPageController = new BureauPageController();
 
 //Système de routage
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -88,6 +90,14 @@ switch ($request_uri) {
     case '/logout-licencie':
         $licencieController->logout();
         break;
+
+    case '/bureau':
+        $bureauPageController->showBureauPage();
+        break;
+
+        case '/mentions-legales':
+            $bureauPageController->showMentionsLegalesPage();
+            break;
 
 
     default:
