@@ -77,8 +77,7 @@ class Licencie {
     // Supprime un licencié
     public function deleteLicencie($id) {
         $stmt = $this->db->prepare("DELETE FROM licencies WHERE id = :id");
-        $stmt->bindParam(":id", $id);
-        
+        $stmt->bindParam(":id", $id);        
         return $stmt->execute();
     }
 
@@ -87,6 +86,24 @@ class Licencie {
         $stmt = $this->db->prepare("SELECT * FROM licencies");
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    // Récupère tous les licenciés triés par le nom de famille
+    public function getAllLicenciesSortedByLastName() {
+        $stmt = $this->db->prepare("SELECT * FROM licencies ORDER BY nom ASC");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    // Récupère tous les licenciés qui ont un mail
+    public function getAllLicenciesWithMail() {
+        $stmt = $this->db->prepare("SELECT * FROM licencies WHERE mail IS NOT NULL AND mail != '' ORDER BY nom ASC");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getLastInsertId() {
+        return $this->db->lastInsertId();
     }
 }
 

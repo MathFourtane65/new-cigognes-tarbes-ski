@@ -22,3 +22,33 @@ CREATE TABLE licencies (
     identifiant VARCHAR(255)
 );
 
+CREATE TABLE sorties (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    lieu VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    date_fin_inscriptions DATETIME,
+    places_bus INT,
+    heure_depart_bus TIME NOT NULL
+);
+
+CREATE TABLE relations_comptes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_parent INT NOT NULL,
+    id_enfant INT NOT NULL,
+    FOREIGN KEY (id_parent) REFERENCES licencies(id),
+    FOREIGN KEY (id_enfant) REFERENCES licencies(id)
+);
+
+ALTER TABLE relations_comptes
+ADD CONSTRAINT fk_relations_comptes_parent
+FOREIGN KEY (id_parent) REFERENCES licencies(id)
+ON DELETE CASCADE;
+
+ALTER TABLE relations_comptes
+ADD CONSTRAINT fk_relations_comptes_enfant
+FOREIGN KEY (id_enfant) REFERENCES licencies(id)
+ON DELETE CASCADE;
+
+
+

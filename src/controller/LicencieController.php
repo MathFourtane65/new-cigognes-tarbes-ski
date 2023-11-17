@@ -2,10 +2,12 @@
 class LicencieController
 {
     private $licencieModel;
+    private $relationsComptesModel;
 
-    public function __construct($licencieModel)
+    public function __construct($licencieModel, $relationsComptesModel)
     {
         $this->licencieModel = $licencieModel;
+        $this->relationsComptesModel = $relationsComptesModel;
     }
 
     public function showLoginForm()
@@ -20,7 +22,7 @@ class LicencieController
             exit();
         }
 
-        $licencies = $this->licencieModel->getAllLicencies();
+        $licencies = $this->licencieModel->getAllLicenciesSortedByLastName();
         require '../src/view/listLicencies.php';
     }
 
@@ -30,6 +32,7 @@ class LicencieController
             header("Location: /connexion-admin");
             exit();
         }
+        $licencies = $this->licencieModel->getAllLicenciesSortedByLastName();
         require '../src/view/create-licencie.php';
     }
 
@@ -66,6 +69,15 @@ class LicencieController
         $created = $this->licencieModel->addLicencie($nom, $prenom, $date_naissance, $mail, $telephone, $adresse, $code_postal, $ville, $niveau, $password, $identifiant);
 
         if ($created) {
+
+            $newLicencieId = $this->licencieModel->getLastInsertId();
+            $idParent = filter_input(INPUT_POST, 'id_parent', FILTER_SANITIZE_NUMBER_INT);
+
+            // Vérifiez si un responsable a été sélectionné avant de tenter de créer la relation
+            if (!empty($idParent)) {
+                // Si un parent est sélectionné, créez la relation
+                $this->relationsComptesModel->addRelation($idParent, $newLicencieId);
+            }
             header('Location: /admin/new-licencie?success=create');
         } else {
             header('Location: /admin/new-licencie?error=failed_create');
@@ -172,4 +184,21 @@ class LicencieController
         }
     }
 
+    public function showDetailsLicencieByAdmin()
+    {
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            header("Location: /connexion-admin");
+            exit();
+        }
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $licencie = $this->licencieModel->getLicencie($id);
+        $enfants = $this->relationsComptesModel->getChildrenByParentId($id);
+        $parents = $this->relationsComptesModel->getParentsByChildId($id);
+        if (!$licencie) {
+            // Gérer l'erreur si le licencié n'existe pas
+            header("Location: /admin/licencies?error=not_found");
+            exit();
+        }
+        require '../src/view/detail-licencie.php';
+    }
 }

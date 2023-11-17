@@ -9,12 +9,11 @@
 
 </head>
 
-
 <body>
 
     <div class="container create-licencie-form">
-    
-    <?php if (isset($_GET['success'])) : ?>
+
+        <?php if (isset($_GET['success'])) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php
                 if ($_GET['success'] == 'create') echo "Création du licencié réussie.";
@@ -23,7 +22,7 @@
 
             </div><?php endif; ?>
 
-            <?php if (isset($_GET['error'])) : ?>
+        <?php if (isset($_GET['error'])) : ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php
                 if ($_GET['error'] == 'failed_create') echo "Erreur lors de la création du licencié.";
@@ -33,11 +32,11 @@
             </div><?php endif; ?>
 
 
-            <!-- Barre d'outils -->
-            <div class="d-flex justify-content-between align-items-center mb-3">
+        <!-- Barre d'outils -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
             <h3 class="my-0">Enregistrer un Licencié</h3>
             <div>
-            <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
+                <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
             </div>
         </div>
 
@@ -81,12 +80,21 @@
                 <input type="text" class="form-control" id="adresse" name="adresse">
             </div>
 
+            <h4 class="titre-section-form">Site Internet</h4>
+            <div class="col-md-6">
+                <label for="id_parent" class="form-label">Compte du responsable</label>
+                <select class="form-control form-select" id="id_parent" name="id_parent">
+                    <option value="">----Sélectionner un responsable----</option>
+                    <?php foreach ($licencies as $licencie) : ?>
+                        <option value="<?= $licencie['id'] ?>"><?= htmlspecialchars($licencie['nom'] . ' ' . $licencie['prenom']) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
             <div class="col-12">
                 <button type="submit" class="btn btn-success">Enregistrer</button>
-                <a href="/admin/licencies"><button class="btn btn-danger" type="button">Annuler</button></a>
+                <a href="/admin/licencies"><button class="btn btn-danger" type="button">Annuler / Retour</button></a>
             </div>
         </form>
     </div>
-
-
 </body>

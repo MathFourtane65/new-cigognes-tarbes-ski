@@ -13,10 +13,10 @@
                     <a href="/" class="nav-link">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link disabled">Actualités</a>
+                    <a href="" class="nav-link">Actualités</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle disabled" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Le Club
                     </a>
                     <ul class="dropdown-menu">
@@ -32,23 +32,23 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link disabled">Calendrier</a>
+                    <a href="" class="nav-link">Calendrier</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link disabled">Phototèque</a>
+                    <a href="" class="nav-link">Phototèque</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link disabled">Dossier d'inscription</a>
+                    <a href="" class="nav-link">Dossier d'inscription</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link disabled">Contact</a>
+                    <a href="" class="nav-link">Contact</a>
                 </li>
 
 
 
 
                 <li class="nav-item nav-item-connexion">
-                    <a href="/connexion-licencie" class="nav-link disabled">Connexion</a>
+                    <a href="/connexion-licencie" class="nav-link">Connexion</a>
                 </li>
 
 

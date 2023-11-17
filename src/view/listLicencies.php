@@ -30,19 +30,21 @@
             <h3 class="my-0">Liste des licenciés</h3>
             <div>
                 <a href="/admin/new-licencie"><button title="Enregistrer un licencié" class="btn btn-dark me-2" type="button"><i class="bi bi-plus-circle"></i></button></a>
-                <a href="/admin/relations-licencies"><button title="Relation entre comptes licenciés" class="btn btn-dark me-2" type="button"><i class="bi bi-diagram-3"></i></button></a>
+                <a href="/admin/relations-comptes"><button title="Relations entre comptes licenciés" class="btn btn-dark me-2" type="button"><i class="bi bi-diagram-3"></i></button></a>
                 <button disabled title="Exporter en .csv" class="btn btn-dark" type="button"><i class="bi bi-file-earmark-excel"></i></button>
             </div>
         </div>
         <table class="table">
             <thead class="table-info">
                 <tr>
-                    <th>#</th>
+                    <!-- <th>#</th> -->
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Date de Naissance</th>
                     <th>Email</th>
                     <th>Téléphone</th>
+                    <th>CP</th>
+                    <th>Ville</th>
                     <th>Adresse</th>
                     <!-- <th>Niveau</th> -->
                     <th>Actions</th>
@@ -52,17 +54,23 @@
             <tbody>
                 <?php foreach ($licencies as $licencie) : ?>
                     <tr>
-                        <td><?= htmlspecialchars($licencie['id']) ?></td>
+                        <!-- <td><?= htmlspecialchars($licencie['id']) ?></td> -->
                         <td><?= htmlspecialchars($licencie['nom']) ?></td>
                         <td><?= htmlspecialchars($licencie['prenom']) ?></td>
                         <td><?= htmlspecialchars($licencie['date_naissance']) ?></td>
                         <td><?= htmlspecialchars($licencie['mail']) ?></td>
                         <td><?= htmlspecialchars($licencie['telephone']) ?></td>
-                        <td><?= htmlspecialchars($licencie['adresse']) . ', ' . htmlspecialchars($licencie['code_postal']) . ' ' . htmlspecialchars($licencie['ville']) ?></td>
+                        <td><?= htmlspecialchars($licencie['code_postal']) ?></td>
+                        <td><?= htmlspecialchars($licencie['ville']) ?></td>
+                        <td><?= htmlspecialchars($licencie['adresse']) ?></td>
+                        <!-- <td><?= htmlspecialchars($licencie['adresse']) . ', ' . htmlspecialchars($licencie['code_postal']) . ' ' . htmlspecialchars($licencie['ville']) ?></td> -->
                         <!-- <td><?= htmlspecialchars($licencie['niveau']) ?></td> -->
                         <td class="buttons-actions">
                             <!-- <button type="button" class="btn btn-danger">Supprimer</button> -->
-                            <a href="/admin/update-licencie?id=<?= $licencie['id'] ?>" class="btn btn-warning me-2" title="Mettre à jour le licencié"><i class="bi bi-pencil"></i></a>
+                            
+                            <a href="/admin/licencies/details?id=<?= $licencie['id'] ?>" class="btn btn-info me-1" title="Détails du licencié"><i class="bi bi-eye"></i></a>
+
+                            <a href="/admin/update-licencie?id=<?= $licencie['id'] ?>" class="btn btn-warning me-1" title="Mettre à jour le licencié"><i class="bi bi-pencil"></i></a>
                             <button title="Supprimer le licencié" type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $licencie['id'] ?>"> <i class="bi bi-trash"></i></button>
                         </td>
                         <!-- Affichez d'autres informations de licencié si nécessaire -->
@@ -75,28 +83,32 @@
 
 
 
-<!-- Modal de confirmation de suppression -->
-<div class="modal fade" id="deleteModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Confirmer la suppression</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Êtes-vous sûr de vouloir supprimer ce licencié ?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <!-- Formulaire caché pour la soumission de suppression -->
-                <form action="/delete-licencie-process" method="post" id="deleteForm" style="display: inline;">
-                    <input type="hidden" name="id" id="licencieIdToDelete" value="">
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                </form>
+    <!-- Modal de confirmation de suppression -->
+    <div class="modal fade" id="deleteModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmer la suppression</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Êtes-vous sûr de vouloir supprimer ce licencié ?</p>
+                    <p class="text-danger">
+                        <strong>Attention :</strong> Cette action entraînera également la suppression de toutes les relations "parents-enfants" associées à ce licencié.
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <!-- Formulaire caché pour la soumission de suppression -->
+                    <form action="/delete-licencie-process" method="post" id="deleteForm" style="display: inline;">
+                        <input type="hidden" name="id" id="licencieIdToDelete" value="">
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- Script JS gestion Modal de confirmation de suppression -->
     <script>

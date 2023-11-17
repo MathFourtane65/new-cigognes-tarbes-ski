@@ -18,7 +18,7 @@
                     <img src="/images/crowd-of-users.png" class="card-img-top img-dashboard-admin" alt="Licenciés">
                     <div class="card-body">
                         <h5 class="card-title">LICENCIÉS</h5>
-                        <p class="card-text">Gestion des licenciés.</p>
+                        <p class="card-text">Gestion des licenciés et des relations "parent/enfant" entre les comptes.</p>
                         <a href="/admin/licencies" class="btn btn-primary">Accéder</a>
                     </div>
                 </div>
@@ -29,8 +29,8 @@
                     <img src="/images/calendar.png" class="card-img-top img-dashboard-admin" alt="Sorties">
                     <div class="card-body">
                         <h5 class="card-title">SORTIES</h5>
-                        <p class="card-text">Gestion des sorties.</p>
-                        <a href="sorties-management-url" class="btn btn-primary">Accéder</a>
+                        <p class="card-text">Gestion des sorties et des inscriptions aux sorties.</p>
+                        <a href="/admin/sorties" class="btn btn-primary">Accéder</a>
                     </div>
                 </div>
             </div>
