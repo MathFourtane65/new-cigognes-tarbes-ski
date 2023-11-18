@@ -1,0 +1,19 @@
+/* dossierInscriptionPage.css */
+.container {
+    max-width: 600px; /* ou la largeur que vous souhaitez */
+    margin-top: 50px; /* espace en haut */
+    margin-bottom: 50px; /* espace en bas */
+}
+
+h1 {
+    margin-bottom: 30px; /* espace sous le titre */
+}
+
+.lead {
+    margin-bottom: 30px; /* espace sous la description */
+}
+
+.btn {
+    padding: 10px 20px; /* taille du bouton */
+    font-size: 20px; /* taille du texte dans le bouton */
+}

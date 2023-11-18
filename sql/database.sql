@@ -51,4 +51,26 @@ FOREIGN KEY (id_enfant) REFERENCES licencies(id)
 ON DELETE CASCADE;
 
 
+CREATE TABLE articles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    contenu TEXT NOT NULL
+);
+
+CREATE TABLE images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    chemin VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE association_articles_images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_article INT,
+    id_image INT,
+    FOREIGN KEY (id_article) REFERENCES articles(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_image) REFERENCES images(id) ON DELETE CASCADE
+);
+
+
+
 

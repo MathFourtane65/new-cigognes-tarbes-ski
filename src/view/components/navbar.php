@@ -35,13 +35,13 @@
                     <a href="" class="nav-link">Calendrier</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Phototèque</a>
+                    <a href="/phototeque" class="nav-link">Phototèque</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Dossier d'inscription</a>
+                    <a href="/dossier-inscription" class="nav-link">Dossier d'inscription</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Contact</a>
+                    <a href="/contact" class="nav-link">Contact</a>
                 </li>
 
 

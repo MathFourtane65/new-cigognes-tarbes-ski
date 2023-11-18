@@ -1,0 +1,15 @@
+/* Style pour les images de la galerie */
+.img-gallery-thumbnail {
+    height: 200px; /* Hauteur fixe pour toutes les images */
+    object-fit: cover; /* Cela permet de couvrir la zone définie sans distordre l'image */
+    width: 100%; /* Prend la largeur totale de la colonne */
+  }
+  
+  /* Style pour le modal */
+  .img-modal-full {
+    width: auto; /* Prend la largeur de l'image originale */
+    height: auto; /* Prend la hauteur de l'image originale */
+    max-width: 100%; /* S'assure que l'image ne dépasse pas la largeur de l'écran */
+    max-height: 100vh; /* S'assure que l'image ne dépasse pas la hauteur de l'écran */
+  }
+  

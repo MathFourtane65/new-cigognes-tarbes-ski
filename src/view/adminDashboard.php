@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <h5 class="card-title">ARTICLES</h5>
                         <p class="card-text">Gestion des articles.</p>
-                        <a href="site-update-url" class="btn btn-primary">Accéder</a>
+                        <a href="/admin/articles" class="btn btn-primary">Accéder</a>
                     </div>
                 </div>
             </div>

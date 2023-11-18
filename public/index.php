@@ -13,23 +13,39 @@ include '../src/model/Administrateur.php';
 include '../src/model/Licencie.php';
 include '../src/model/Sortie.php';
 include '../src/model/RelationsComptes.php';
+include '../src/model/Article.php';
+include '../src/model/Image.php';
+include '../src/model/AssociationArticlesImages.php';
+
 include '../src/controller/AdminLoginController.php';
 include '../src/controller/LicencieController.php';
 include '../src/controller/SortieController.php';
 include '../src/controller/RelationsComptesController.php';
+include '../src/controller/ArticleController.php';
+include '../src/controller/ImageController.php';
+include '../src/controller/AssociationArticlesImagesController.php';
+
 include '../src/controller/HomePageController.php';
-include '../src/controller/BureauPageController.php';
+include '../src/controller/SiteVitrinePageController.php';
 
 $adminModel = new Administrateur($db);
 $licencieModel = new Licencie($db);
 $sortieModel = new Sortie($db);
 $relationsComptes = new RelationsComptes($db);
+$articleModel = new Article($db);
+$imageModel = new Image($db);
+$associationArticlesImagesModel = new AssociationArticlesImages($db);
+
 $adminLoginController = new AdminLoginController($adminModel);
 $licencieController = new LicencieController($licencieModel, $relationsComptes);
 $sortieController = new SortieController($sortieModel);
 $relationsComptesController = new RelationsComptesController($relationsComptes, $licencieModel);
+$articleController = new ArticleController($articleModel, $imageModel, $associationArticlesImagesModel);
+$imageController = new ImageController($imageModel);
+$associationArticlesImagesController = new AssociationArticlesImagesController($associationArticlesImagesModel);
+
 $homePageController = new HomePageController();
-$bureauPageController = new BureauPageController();
+$siteVitrinePageController = new SiteVitrinePageController();
 
 //Système de routage
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -42,16 +58,25 @@ switch ($request_uri) {
         break;
 
     case '/bureau':
-        $bureauPageController->showBureauPage();
+        $siteVitrinePageController->showBureauPage();
         break;
 
     case '/contact':
-        echo "Page de contact";
+        $siteVitrinePageController->showContactPage();
         break;
 
     case '/mentions-legales':
-        $bureauPageController->showMentionsLegalesPage();
+        $siteVitrinePageController->showMentionsLegalesPage();
         break;
+
+    case '/dossier-inscription':
+        $siteVitrinePageController->showDossierInscriptionPage();
+        break;
+
+    case '/phototeque':
+        $siteVitrinePageController->showPhototequePage();
+        break;
+
 
 
         // ---------------------------- ESPACE LICENCIE ----------------------------
@@ -143,6 +168,26 @@ switch ($request_uri) {
     case '/create-sortie-process':
         $sortieController->processCreateSortie();
         break;
+
+
+    case '/admin/articles':
+        $articleController->showListeArticles();
+        break;
+
+    case '/admin/articles/new':
+        $articleController->showCreateArticleForm();
+        break;
+
+    case '/process-create-article':
+        $articleController->processCreateArticle();
+        break;
+
+    case '/delete-article-process':
+        $articleController->deleteArticle();
+        break;
+
+
+
 
 
 
