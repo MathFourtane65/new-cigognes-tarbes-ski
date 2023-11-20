@@ -11,7 +11,7 @@
 
 </head>
 
-<h2>Nous mettons actuellement à jour notre site pour la saison à venir ...</h2>
+<!-- <h2>Nous mettons actuellement à jour notre site pour la saison à venir ...</h2> -->
 
 <body>
     <div class="container mt-4">
@@ -48,16 +48,22 @@
 
             <!-- Colonne pour l'article en vedette -->
             <div class="col-md-4">
-
-                <!-- <div class="row"> -->
-                <div class="card mb-3">
-                    <img src="/images/carousel/image1.jpg" class="card-img" alt="Dernier Article">
-                    <div class="card-img-overlay img-article-page-accueil"> <!-- Ajout d'un fond noir semi-transparent -->
-                        <h5 class="card-title text-white">Titre de l'article en vedette</h5>
-                        <p class="card-text text-white">Ceci est un résumé ou une accroche pour l'article. Cela donne envie au lecteur de cliquer pour lire plus.</p>
-                        <a href="#" class="btn btn-primary">Lire plus</a>
+                <?php if (!empty($lastArticle)) : ?>
+                    <!-- <div class="row"> -->
+                    <div class="card mb-3">
+                        <?php if (!empty($lastArticle['image_paths'][0])) : ?>
+                            <img src="<?= htmlspecialchars($lastArticle['image_paths'][0]) ?>" class="card-img" alt="Dernier Article">
+                        <?php else : ?>
+                            <!-- Vous pouvez insérer une image par défaut si aucune image n'est associée à l'article -->
+                            <img src="/path/to/default/image.jpg" class="card-img img-card-accueil" alt="Pas d'image disponible">
+                        <?php endif; ?>
+                        <div class="card-img-overlay img-article-page-accueil"> <!-- Ajout d'un fond noir semi-transparent -->
+                            <h5 class="card-title text-white"><?= htmlspecialchars($lastArticle['titre']) ?></h5>
+                            <!-- <p class="card-text text-white"><?= htmlspecialchars($lastArticle['contenu']) ?></p> -->
+                            <a href="/actualites/details/<?= $lastArticle['id'] ?>" class="btn btn-primary btn-card-lire-plus">Lire plus</a>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
 
                 <!-- </div> -->
 
@@ -73,12 +79,12 @@
 
 
         <div class="card text-center">
-            <div class="card-header">
+            <!-- <div class="card-header">
             Bienvenue au Club "Les Cigognes" - Section Ski
-            </div>
+            </div> -->
             <div class="card-body">
-                <h5 class="card-title"> Fondée en 1945, l’association "Les Cigognes" s'est donnée pour mission de partager les joies du ski avec les enfants et adultes de notre région. Nichés au cœur des Pyrénées, nous profitons d'un cadre exceptionnel pour pratiquer ce sport hivernal tant en loisir qu'en compétition.</h5>
-                <p class="card-text">  Encadrés par des moniteurs passionnés et expérimentés, nos membres, de 5 à 80 ans, peuvent compter sur un accompagnement de qualité adapté à leur niveau, qu'ils soient novices ou confirmés.</p>
+                <h4 class="card-title"> Fondée en 1945, l’association "Les Cigognes" s'est donnée pour mission de partager les joies du ski avec les enfants et adultes de notre région. Nichés au cœur des Pyrénées, nous profitons d'un cadre exceptionnel pour pratiquer ce sport hivernal tant en loisir qu'en compétition.</h5>
+                    <h5 class="card-title"> Encadrés par des moniteurs passionnés et expérimentés, nos membres, de 5 à 80 ans, peuvent compter sur un accompagnement de qualité adapté à leur niveau, qu'ils soient novices ou confirmés.</h5>
             </div>
         </div>
 

@@ -1,0 +1,54 @@
+/* actualitesPage.css */
+
+/* Assurez-vous que les images couvrent la card et soient centrées */
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Fixez une hauteur ou utilisez 'auto' pour une hauteur naturelle */
+    object-fit: cover; /* Couvre la zone sans perdre les proportions */
+    object-position: center; /* Centre l'image dans la frame */
+  }
+  
+  /* Style pour le titre de la card */
+  .card-title {
+    font-size: 1.25rem; /* Taille du titre */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Style pour le texte de la card */
+  .card-text {
+    font-size: 0.9rem; /* Taille du texte */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limiter le nombre de lignes à 3 */
+    -webkit-box-orient: vertical;
+  }
+  
+  /* Pagination centrée et espacée */
+  .pagination {
+    justify-content: center; /* Centre la pagination */
+    margin-top: 20px; /* Espacement au-dessus de la pagination */
+  }
+  
+  /* Cards avec un espacement uniforme */
+  .card {
+    margin-bottom: 20px; /* Espacement en bas de la card */
+  }
+  
+  /* Assure la réactivité des cards dans la grille */
+  @media (max-width: 575.98px) { 
+    .card-img-top {
+      height: 150px; /* Hauteur plus petite sur les petits écrans */
+    }
+  }
+  
+  @media (min-width: 576px) and (max-width: 767.98px) { 
+    .card-img-top {
+      height: 180px; /* Hauteur intermédiaire pour les écrans moyens */
+    }
+  }
+  
+  /* Vous pouvez ajouter des médias queries supplémentaires pour gérer d'autres tailles d'écran si nécessaire */
+  

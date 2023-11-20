@@ -40,11 +40,34 @@
                 <img src="/images/article.png" class="card-img-top img-dashboard-admin" alt="Mise à Jour Site">
                     <div class="card-body">
                         <h5 class="card-title">ARTICLES</h5>
-                        <p class="card-text">Gestion des articles.</p>
+                        <p class="card-text">Gestion des articles publiés sur le site internet.</p>
                         <a href="/admin/articles" class="btn btn-primary">Accéder</a>
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                <img src="/images/info.png" class="card-img-top img-dashboard-admin" alt="Mise à Jour Site">
+                    <div class="card-body">
+                        <h5 class="card-title">ACTUALITES FLASH</h5>
+                        <p class="card-text">Gestion du contenu de la barre de flash (Flash info).</p>
+                        <a href="/admin/actualites-flash" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                <img src="/images/icon-admin.png" class="card-img-top img-dashboard-admin" alt="Mise à Jour Site">
+                    <div class="card-body">
+                        <h5 class="card-title">ADMINISTRATEURS</h5>
+                        <p class="card-text">Gestion des comptes administrateurs du site internet.</p>
+                        <a href="/admin/administrateurs" class="btn btn-primary disabled">Accéder</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>

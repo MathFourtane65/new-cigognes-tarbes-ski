@@ -13,7 +13,7 @@
                     <a href="/" class="nav-link">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Actualités</a>
+                    <a href="/actualites" class="nav-link">Actualités</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,15 +24,15 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="">Les Moniteurs</a></li>
+                        <li><a class="dropdown-item" href="/moniteurs">Les Moniteurs</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="">Les Partenaires</a></li>
+                        <li><a class="dropdown-item" href="/partenaires">Les Partenaires</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Calendrier</a>
+                    <a href="/calendrier" class="nav-link">Calendrier</a>
                 </li>
                 <li class="nav-item">
                     <a href="/phototeque" class="nav-link">Phototèque</a>
@@ -47,10 +47,18 @@
 
 
 
-                <li class="nav-item nav-item-connexion">
+                <!-- <li class="nav-item nav-item-connexion">
                     <a href="/connexion-licencie" class="nav-link">Connexion</a>
+                </li> -->
+                <li class="nav-item nav-item-connexion">
+                    <?php if (isset($_SESSION['licencie_logged_in']) && $_SESSION['licencie_logged_in'] === true) : ?>
+                        <a href="/licencie" class="nav-link">Espace Licencié</a>
+                    <?php elseif (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) : ?>
+                        <a href="/admin" class="nav-link">Espace Admin</a>
+                    <?php else : ?>
+                        <a href="/connexion-licencie" class="nav-link">Connexion</a>
+                    <?php endif; ?>
                 </li>
-
 
 
 

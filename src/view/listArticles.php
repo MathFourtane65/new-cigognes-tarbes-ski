@@ -71,9 +71,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Êtes-vous sûr de vouloir supprimer cet artcile ?</p>
+                    <p>Êtes-vous sûr de vouloir supprimer cet article ?</p>
                     <p class="text-danger">
-                        <strong>Attention :</strong> Cette action entraînera également la suppression de toutes les images liées à cet artcile.
+                        <strong>Attention :</strong> Cette action entraînera également la suppression de toutes les images liées à cet article.
                     </p>
                 </div>
 

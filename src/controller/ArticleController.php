@@ -4,12 +4,14 @@ class ArticleController
     private $articleModel;
     private $imageModel;
     private $associationArticlesImagesModel;
+private $actualitesFlashModel;
 
-    public function __construct($articleModel, $imageModel, $associationArticlesImagesModel)
+    public function __construct($articleModel, $imageModel, $associationArticlesImagesModel, $actualitesFlashModel)
     {
         $this->articleModel = $articleModel;
         $this->imageModel = $imageModel;
         $this->associationArticlesImagesModel = $associationArticlesImagesModel;
+$this->actualitesFlashModel = $actualitesFlashModel;
     }
 
     public function showListeArticles()
@@ -53,6 +55,14 @@ class ArticleController
         if ($created) {
             $articleId = $this->articleModel->getLastInsertId();
 
+            // Vérifiez si les fichiers sont correctement téléchargés avant de les enregistrer
+            foreach ($_FILES['images']['error'] as $error) {
+                if ($error != UPLOAD_ERR_OK) {
+                    // Gérer l'erreur ici (par exemple, en redirigeant avec un message d'erreur)
+                    header('Location: /admin/articles/new?error=failed_upload');
+                    exit();
+                }
+            }
 
             // Gestion de l'upload des images
             if (isset($_FILES['images'])) {
@@ -121,5 +131,40 @@ class ArticleController
 
         // Rediriger avec un message de succès
         header('Location: /admin/articles?success=delete');
+    }
+
+    // Dans ArticleController.php
+
+    // Remplacez la méthode existante ou ajoutez celle-ci si elle n'existe pas
+    public function showArticlesWithPagination($page)
+    {
+        $limit = 6; // Le nombre d'articles par page
+        $offset = ($page - 1) * $limit;
+        $totalArticles = count($this->articleModel->getAllArticles());
+        $totalPages = ceil($totalArticles / $limit);
+
+        $articles = $this->articleModel->getArticlesWithPagination($limit, $offset);
+        // Ajoutez ici la logique pour obtenir l'image principale de chaque article si nécessaire
+
+        $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+
+        require '../src/view/actualitesPage.php'; // Assurez-vous que le chemin est correct
+    }
+
+    public function showArticleDetails($articleId)
+    {
+        $article = $this->articleModel->getArticleByIdWithImages($articleId);
+
+        if (!$article) {
+            // Gérer l'erreur si l'article n'existe pas
+            header('HTTP/1.0 404 Not Found');
+            echo "Article non trouvé";
+            return;
+        }
+
+        $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+
+
+        require '../src/view/actualitesDetailsPage.php';
     }
 }

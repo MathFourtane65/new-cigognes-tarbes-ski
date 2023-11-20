@@ -1,28 +1,74 @@
-<?php 
+<?php
 
 // require_once '../src/utils/EmailSender.php';
 
-class SiteVitrinePageController {
+class SiteVitrinePageController
+{
+    private $actualitesFlashModel;
 
-    public function showBureauPage() {
+    public function __construct($actualitesFlashModel)
+    {
+        $this->actualitesFlashModel = $actualitesFlashModel;
+    }
+
+    public function showBureauPage()
+    {
+        $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+
         require '../src/view/bureauPage.php';
     }
 
-    public function showMentionsLegalesPage() {
+    public function showMentionsLegalesPage()
+    {
+        $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+
         require '../src/view/mentionsLegalesPage.php';
     }
 
-    public function showDossierInscriptionPage() {
+    public function showDossierInscriptionPage()
+    {
+        $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+
         require '../src/view/dossierInscriptionPage.php';
     }
 
-    public function showContactPage() {
+    public function showContactPage()
+    {
+        $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+
         require '../src/view/contactPage.php';
     }
 
-    public function showPhototequePage() {
+    public function showPhototequePage()
+    {
+        $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+
         require '../src/view/phototequePage.php';
     }
-}
 
-?>
+    //public function showActualitesPage()
+    //{
+    //    require '../src/view/actualitesPage.php';
+    //}
+
+    public function showCalendrierPage()
+    {
+        $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+
+        require '../src/view/calendrierPage.php';
+    }
+
+    public function showMoniteursPage()
+    {
+        $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+
+        require '../src/view/moniteursPage.php';
+    }
+
+    public function showPartenairesPage()
+    {
+        $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+
+        require '../src/view/partenairesPage.php';
+    }
+}

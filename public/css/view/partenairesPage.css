@@ -1,0 +1,20 @@
+.card-img-top {
+    width: auto;
+    height: 15vw; /* Ajustez la hauteur comme vous le souhaitez */
+    object-fit: cover; /* Permet de s'assurer que l'image couvre bien l'espace sans être étirée */
+    margin: 0 auto; /* Centrer l'image */   
+    margin-top: 3px; 
+}
+
+.card-title {
+    font-size: 1.25rem; /* Taille du titre de la carte */
+}
+
+.card-text {
+    font-size: 1rem; /* Taille du texte dans le corps de la carte */
+}
+
+.card-footer {
+    background-color: #f8f9fa; /* Couleur de fond du pied de carte, à ajuster si nécessaire */
+    border-top: none; /* Retirer la bordure si vous ne voulez pas de séparation */
+}

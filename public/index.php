@@ -16,6 +16,7 @@ include '../src/model/RelationsComptes.php';
 include '../src/model/Article.php';
 include '../src/model/Image.php';
 include '../src/model/AssociationArticlesImages.php';
+include '../src/model/ActualitesFlash.php';
 
 include '../src/controller/AdminLoginController.php';
 include '../src/controller/LicencieController.php';
@@ -24,6 +25,7 @@ include '../src/controller/RelationsComptesController.php';
 include '../src/controller/ArticleController.php';
 include '../src/controller/ImageController.php';
 include '../src/controller/AssociationArticlesImagesController.php';
+include '../src/controller/ActualitesFlashController.php';
 
 include '../src/controller/HomePageController.php';
 include '../src/controller/SiteVitrinePageController.php';
@@ -35,17 +37,19 @@ $relationsComptes = new RelationsComptes($db);
 $articleModel = new Article($db);
 $imageModel = new Image($db);
 $associationArticlesImagesModel = new AssociationArticlesImages($db);
+$actualitesFlashModel = new ActualitesFlash($db);
 
 $adminLoginController = new AdminLoginController($adminModel);
 $licencieController = new LicencieController($licencieModel, $relationsComptes);
 $sortieController = new SortieController($sortieModel);
 $relationsComptesController = new RelationsComptesController($relationsComptes, $licencieModel);
-$articleController = new ArticleController($articleModel, $imageModel, $associationArticlesImagesModel);
+$articleController = new ArticleController($articleModel, $imageModel, $associationArticlesImagesModel, $actualitesFlashModel);
 $imageController = new ImageController($imageModel);
 $associationArticlesImagesController = new AssociationArticlesImagesController($associationArticlesImagesModel);
+$actualitesFlashController = new ActualitesFlashController($actualitesFlashModel);
 
-$homePageController = new HomePageController();
-$siteVitrinePageController = new SiteVitrinePageController();
+$homePageController = new HomePageController($articleModel, $actualitesFlashModel);
+$siteVitrinePageController = new SiteVitrinePageController($actualitesFlashModel);
 
 //Système de routage
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -75,6 +79,28 @@ switch ($request_uri) {
 
     case '/phototeque':
         $siteVitrinePageController->showPhototequePage();
+        break;
+
+    case '/actualites':
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $articleController->showArticlesWithPagination($page);
+        break;
+
+    case (preg_match('/\/actualites\/details\/(\d+)/', $request_uri, $matches) ? true : false):
+        $articleId = $matches[1];
+        $articleController->showArticleDetails($articleId);
+        break;
+
+    case '/calendrier':
+        $siteVitrinePageController->showCalendrierPage();
+        break;
+
+    case '/moniteurs':
+        $siteVitrinePageController->showMoniteursPage();
+        break;
+
+    case '/partenaires':
+        $siteVitrinePageController->showPartenairesPage();
         break;
 
 
@@ -184,6 +210,19 @@ switch ($request_uri) {
 
     case '/delete-article-process':
         $articleController->deleteArticle();
+        break;
+
+
+    case '/admin/actualites-flash':
+        $actualitesFlashController->showListeActualitesFlash();
+        break;
+
+    case '/admin/actualites-flash/update':
+        $actualitesFlashController->showUpdateActualitesFlash();
+        break;
+
+        case '/update-actualites-flash-process':
+        $actualitesFlashController->updateActualitesFlash();
         break;
 
 

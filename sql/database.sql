@@ -71,6 +71,12 @@ CREATE TABLE association_articles_images (
     FOREIGN KEY (id_image) REFERENCES images(id) ON DELETE CASCADE
 );
 
+CREATE TABLE actualites_flash (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    contenu TEXT,
+    cache BOOLEAN NOT NULL DEFAULT 0
+);
+
 
 
 

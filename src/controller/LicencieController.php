@@ -1,4 +1,7 @@
 <?php
+
+require_once '../src/utils/EmailSender.php';
+
 class LicencieController
 {
     private $licencieModel;
@@ -78,6 +81,17 @@ class LicencieController
                 // Si un parent est sélectionné, créez la relation
                 $this->relationsComptesModel->addRelation($idParent, $newLicencieId);
             }
+
+            // Préparer l'email
+            $to = $mail; // Email du licencié
+            $subject = "Identifiants CIGOGNES TARBES SKI";
+            $message = "Bonjour " . $prenom . ",\n\nVoici vos identifiants pour accéder à votre espace licencié :\nIdentifiant: " . $identifiant . "\nMot de passe: " . $password . "\n\nSelon votre situation, des comptes dits 'enfants' seront rattachés à votre compte.\n\nCordialement,\nL'équipe du Club des Cigognes.";
+            $from = "votreadresseemail@example.com";
+            $fromName = "Cigognes Tarbes Ski";
+            // Envoyer l'email
+            EmailSender::sendMail($to, $subject, $message, $from, $fromName);
+
+
             header('Location: /admin/new-licencie?success=create');
         } else {
             header('Location: /admin/new-licencie?error=failed_create');

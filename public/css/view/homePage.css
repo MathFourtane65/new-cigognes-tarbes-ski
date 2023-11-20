@@ -1,9 +1,21 @@
 
 .img-article-page-accueil {
-    background-color: rgba(0, 0, 0, 0.8);
-
+    background-color: rgba(0, 0, 0, 0.75);
+    height: auto;
+    object-fit: cover;
+    width: 100%;
 }
 
 .carousel-page-accueil {
     
+}
+
+.img-card-accueil {
+    height: auto;
+    object-fit: cover;
+    width: 100%;
+}
+
+.btn-card-lire-plus {
+    margin: 20%;
 }

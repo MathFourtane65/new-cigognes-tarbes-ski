@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <form class="row g-3 needs-validation" action="/process-create-article" method="post" enctype="multipart/form-data" onsubmit="return checkFileCount() && checkTotalFileSize()">
+        <form class="row g-3 needs-validation" action="/process-create-article" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
             <h4 class="titre-section-form">Infos</h5>
                 <div class="col-md-8">
                     <label for="titre" class="form-label">Titre<span class="champ-obligatoire">*</span></label>
@@ -98,6 +98,12 @@
             }
 
             return true;
+        }
+
+
+        function validateForm() {
+            // Exécuter les deux validations
+            return checkFileCount() && checkTotalFileSize();
         }
     </script>
 </body>
