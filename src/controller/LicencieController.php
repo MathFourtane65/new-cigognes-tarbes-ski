@@ -129,10 +129,11 @@ class LicencieController
         //     exit();
         // }
 
-        $authenticated = $this->licencieModel->authenticate($identifiant, $password);
+        $user = $this->licencieModel->authenticate($identifiant, $password);
 
-        if ($authenticated) {
+        if ($user) {
             $_SESSION['licencie_logged_in'] = true;
+            $_SESSION['licencie_id'] = $user['id'];
             header('Location: /licencie');
         } else {
             header('Location: /connexion-licencie?error=invalid_credentials');
@@ -214,5 +215,23 @@ class LicencieController
             exit();
         }
         require '../src/view/detail-licencie.php';
+    }
+
+    public function showMesInfosLicencie()
+    {
+        if (!isset($_SESSION['licencie_logged_in']) || $_SESSION['licencie_logged_in'] !== true) {
+            header("Location: /connexion-licencie");
+            exit();
+        }
+        $id = $_SESSION['licencie_id'];
+        $licencie = $this->licencieModel->getLicencie($id);
+        $enfants = $this->relationsComptesModel->getChildrenByParentId($id);
+        $parents = $this->relationsComptesModel->getParentsByChildId($id);
+        if (!$licencie) {
+           // Gérer l'erreur si le licencié n'existe pas
+           header("Location: /licencie?error=not_found");
+           exit();
+        }
+        require '../src/view/mesInfosLicencie.php';
     }
 }

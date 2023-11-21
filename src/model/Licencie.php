@@ -32,14 +32,14 @@ class Licencie {
 
     // Authentifie un licencié
     public function authenticate($identifiant, $password) {
-        $stmt = $this->db->prepare("SELECT password FROM licencies WHERE identifiant = :identifiant");
+        $stmt = $this->db->prepare("SELECT id, password FROM licencies WHERE identifiant = :identifiant");
         $stmt->bindParam(":identifiant", $identifiant);
         $stmt->execute();
 
         $result = $stmt->fetch();
 
         if ($result && password_verify($password, $result['password'])) {
-            return true;  // authentification réussie
+            return $result;  // authentification réussie
         }
         return false; // échec de l'authentification
     }

@@ -122,6 +122,10 @@ switch ($request_uri) {
         $licencieController->showDashboardLicencie();
         break;
 
+    case '/licencie/mes-infos':
+        $licencieController->showMesInfosLicencie();
+        break;
+
 
         // ---------------------------- ESPACE ADMIN -------------------------------
     case '/connexion-admin':
@@ -235,7 +239,6 @@ switch ($request_uri) {
     case '/logout-admin':
         $adminLoginController->logout();
         break;
-
 
 
 
