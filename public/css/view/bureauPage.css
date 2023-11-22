@@ -1,26 +1,33 @@
-#cadre{
-    border: 3px solid red;
-    max-width: 85%;
-    margin: auto;
-    border-radius: 80px;
+.membre-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 }
 
-#texte {
-    font-size: 20px;
-    margin: auto;
-    margin-top: 5px; 
-    margin-bottom: 5px; 
-    max-width: 80%;
-    text-align: center;   
+.membre-card:hover {
+    transform: scale(1.05);
 }
 
-#titre-accueil {
-    font-size: 40px;
-    text-align: center;
-    font-family: "Copperplate";
+.membre-card img {
+    width: 100%; /* L'image prend toute la largeur de la carte */
+    height: 150px; /* Hauteur fixe pour toutes les images */
+    object-fit: contain; /* L'image est contenue dans le cadre sans être coupée */
+    object-position: center; /* Centre l'image dans le cadre */
+    padding: 5px;
+    border-bottom: 1px solid #eee; /* Optionnel: ajoute une fine ligne pour séparer l'image du corps de la carte */
 }
 
-img {
-    width: 50%;
-    height: auto;
+.membre-card .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.membre-card .card-text {
+    font-size: 1rem;
+}
+
+/* Espacement et alignement du titre */
+h1.text-center.mb-4 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
 }

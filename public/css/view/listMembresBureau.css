@@ -1,0 +1,21 @@
+.tableau-membres-bureau {
+    border: solid 0.5px black;
+    border-radius: 10px;
+    margin-top: 15px;
+    padding: 15px;
+}
+
+td {
+    font-size: 14px;
+}
+
+.cellule-image,
+.cellule-texte {
+    vertical-align: middle;
+}
+
+.img-moniteur {
+    width: 60px; /* ou la taille que vous souhaitez */
+    height: auto;
+    border-radius: 50%; /* Pour rendre l'image ronde si vous le souhaitez */
+}

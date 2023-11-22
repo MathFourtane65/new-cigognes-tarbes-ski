@@ -89,4 +89,14 @@ CREATE TABLE moniteurs (
     niveau VARCHAR(50)
 );
 
+CREATE TABLE membres_bureau (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    mail VARCHAR(255),
+    telephone VARCHAR(15),
+    photo VARCHAR(255),
+    role VARCHAR(100)
+);
+
 

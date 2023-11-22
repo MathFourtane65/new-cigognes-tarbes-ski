@@ -6,17 +6,19 @@ class SiteVitrinePageController
 {
     private $actualitesFlashModel;
     private $moniteurModel;
+    private $membreBureauModel;
 
-    public function __construct($actualitesFlashModel, $moniteurModel)
+    public function __construct($actualitesFlashModel, $moniteurModel, $membreBureauModel)
     {
         $this->actualitesFlashModel = $actualitesFlashModel;
         $this->moniteurModel = $moniteurModel;
+        $this->membreBureauModel = $membreBureauModel;
     }
 
     public function showBureauPage()
     {
         $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
-
+        $membresBureau = $this->membreBureauModel->getAllMembresBureauSortByNom();
         require '../src/view/bureauPage.php';
     }
 
