@@ -1,14 +1,17 @@
 <?php
 
-class Licencie {
+class Licencie
+{
     private $db;
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->db = $db;
     }
 
     // Ajoute un nouveau licencié
-    public function addLicencie($nom, $prenom, $date_naissance, $mail, $telephone, $adresse, $code_postal, $ville, $niveau, $password, $identifiant) {
+    public function addLicencie($nom, $prenom, $date_naissance, $mail, $telephone, $adresse, $code_postal, $ville, $niveau, $password, $identifiant)
+    {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $stmt = $this->db->prepare("
@@ -31,7 +34,8 @@ class Licencie {
     }
 
     // Authentifie un licencié
-    public function authenticate($identifiant, $password) {
+    public function authenticate($identifiant, $password)
+    {
         $stmt = $this->db->prepare("SELECT id, password FROM licencies WHERE identifiant = :identifiant");
         $stmt->bindParam(":identifiant", $identifiant);
         $stmt->execute();
@@ -45,7 +49,8 @@ class Licencie {
     }
 
     // Récupère les informations d'un licencié
-    public function getLicencie($id) {
+    public function getLicencie($id)
+    {
         $stmt = $this->db->prepare("SELECT * FROM licencies WHERE id = :id");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
@@ -54,7 +59,8 @@ class Licencie {
     }
 
     // Met à jour les informations d'un licencié
-    public function updateLicencieByAdmin($id, $nom, $prenom, $date_naissance, $mail, $telephone, $adresse, $code_postal, $ville) {
+    public function updateLicencieByAdmin($id, $nom, $prenom, $date_naissance, $mail, $telephone, $adresse, $code_postal, $ville)
+    {
         $stmt = $this->db->prepare("
             UPDATE licencies 
             SET nom = :nom, prenom = :prenom, date_naissance = :date_naissance, mail = :mail, 
@@ -75,36 +81,55 @@ class Licencie {
     }
 
     // Supprime un licencié
-    public function deleteLicencie($id) {
+    public function deleteLicencie($id)
+    {
         $stmt = $this->db->prepare("DELETE FROM licencies WHERE id = :id");
-        $stmt->bindParam(":id", $id);        
+        $stmt->bindParam(":id", $id);
+        return $stmt->execute();
+    }
+
+    // Met à jour le mot de passe d'un licencié
+    public function resetPassword($id, $newPassword)
+    {
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        $stmt = $this->db->prepare("
+            UPDATE licencies 
+            SET password = :password
+            WHERE id = :id
+        ");
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":password", $hashedPassword);
+
         return $stmt->execute();
     }
 
     // Récupère tous les licenciés
-    public function getAllLicencies() {
+    public function getAllLicencies()
+    {
         $stmt = $this->db->prepare("SELECT * FROM licencies");
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
     // Récupère tous les licenciés triés par le nom de famille
-    public function getAllLicenciesSortedByLastName() {
+    public function getAllLicenciesSortedByLastName()
+    {
         $stmt = $this->db->prepare("SELECT * FROM licencies ORDER BY nom ASC");
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
     // Récupère tous les licenciés qui ont un mail
-    public function getAllLicenciesWithMail() {
+    public function getAllLicenciesWithMail()
+    {
         $stmt = $this->db->prepare("SELECT * FROM licencies WHERE mail IS NOT NULL AND mail != '' ORDER BY nom ASC");
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function getLastInsertId() {
+    public function getLastInsertId()
+    {
         return $this->db->lastInsertId();
     }
 }
-
-?>

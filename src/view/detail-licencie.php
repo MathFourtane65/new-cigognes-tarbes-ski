@@ -17,7 +17,7 @@
         <?php if (isset($_GET['success'])) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php
-                if ($_GET['success'] == 'update') echo "Modification du licencié réussie.";
+                if ($_GET['success'] == 'reset_creditentials') echo "Réintialisation du mot de passe effectuée avec succès, un mail a été envoyé au licencié.";
                 ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
@@ -26,7 +26,7 @@
         <?php if (isset($_GET['error'])) : ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php
-                if ($_GET['error'] == 'failed_update') echo "Erreur lors de la modification du licencié.";
+                if ($_GET['error'] == 'failed_reset_creditentials') echo "Erreur lors de la réintialisation du mot de passe.";
                 ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
@@ -43,14 +43,19 @@
             </div>
             <div class="col-md-4 d-flex justify-content-end">
                 <?php if (!empty($licencie['mail'])) : ?>
-                    <button title="Envoyer nouveaux identifiants par mail" class="btn btn-dark" disabled><i class="bi bi-envelope-arrow-up"></i></button>
-                <?php else : ?>
+                    <!-- Formulaire pour réinitialiser et envoyer les identifiants par mail -->
+                    <form action="/reset-creditentials-process" method="post">
+                        <input type="hidden" id="id" name="id" value="<?= $licencie['id']; ?>">
+                        <button title="Envoyer nouveaux identifiants par mail" type="submit" class="btn btn-dark">
+                            <i class="bi bi-envelope-arrow-up"></i>
+                        </button>
+                    </form> <?php else : ?>
                     <button title="Impossible d'envoyer un mail à ce licencié" class="btn btn-dark" disabled><i class="bi bi-envelope-slash"></i></button>
                 <?php endif; ?>
             </div>
         </div>
-        
-        <form class="row g-3 needs-validation" action="/update-licencie-process-admin" method="post">
+
+        <form class="row g-3 needs-validation" method="post">
             <input disabled type="hidden" name="id" value="<?php echo $licencie['id']; ?>" />
             <h5 class="titre-section-form">Identité</h5>
             <div class="col-md-4">

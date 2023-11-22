@@ -228,10 +228,59 @@ class LicencieController
         $enfants = $this->relationsComptesModel->getChildrenByParentId($id);
         $parents = $this->relationsComptesModel->getParentsByChildId($id);
         if (!$licencie) {
-           // Gérer l'erreur si le licencié n'existe pas
-           header("Location: /licencie?error=not_found");
-           exit();
+            // Gérer l'erreur si le licencié n'existe pas
+            header("Location: /licencie?error=not_found");
+            exit();
         }
         require '../src/view/mesInfosLicencie.php';
+    }
+
+    public function showUpdatePasswordByLicencieForm()
+    {
+        if (!isset($_SESSION['licencie_logged_in']) || $_SESSION['licencie_logged_in'] !== true) {
+            header("Location: /connexion-licencie");
+            exit();
+        }
+        $id = $_SESSION['licencie_id'];
+        $licencie = $this->licencieModel->getLicencie($id);
+        if (!$licencie) {
+            // Gérer l'erreur si le licencié n'existe pas
+            header("Location: /licencie?error=not_found");
+            exit();
+        }
+        require '../src/view/update-password-licencie.php';
+    }
+
+    public function resetAndSendCreditentialsByAdmin()
+    {
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            header("Location: /connexion-admin");
+            exit();
+        }
+
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+        // Générer un mot de passe aléatoire de 8 chiffres
+        $password = str_pad(mt_rand(0, 99999999), 8, '0', STR_PAD_LEFT);
+
+        $updated = $this->licencieModel->resetPassword($id, $password);
+
+
+        if ($updated) {
+            $licencie = $this->licencieModel->getLicencie($id);
+
+            // Préparer l'email
+            $to = $licencie['mail']; // Email du licencié
+            $subject = "Identifiants CIGOGNES TARBES SKI";
+            $message = "Bonjour " . $licencie['prenom'] . ",\n\nVos informations de connexion pour accéder à votre espace licencié ont été réintialisées :\nIdentifiant: " . $licencie['identifiant'] . "\nMot de passe: " . $password . "\n\nSelon votre situation, des comptes dits 'enfants' sont rattachés à votre compte.\n\nCordialement,\nL'équipe du Club des Cigognes.\n https://cigognes-tarbes-ski.fr/\n\n NB: Ceci est un message automatique, merci de ne pas y répondre.";
+            $from = "contact@cigognes-tarbes-ski.fr";
+            $fromName = "Cigognes Tarbes Ski";
+            // Envoyer l'email
+            EmailSender::sendMail($to, $subject, $message, $from, $fromName);
+
+            header('Location: /admin/licencies/details?id=' . $id . '&success=reset_creditentials');
+        } else {
+            header('Location: /admin/licencies/details?id=' . $id . '&error=failed_reset_creditentials');
+        }
     }
 }

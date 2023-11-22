@@ -89,7 +89,7 @@
 
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <img src="/images/entraineur.png" class="card-img-top img-dashboard-admin" alt="Mise à Jour Site">
+                    <img src="/images/team.png" class="card-img-top img-dashboard-admin" alt="Mise à Jour Site">
                     <div class="card-body">
                         <h5 class="card-title">MEMBRES BUREAU</h5>
                         <p class="card-text">Gestion des membres du bureau à afficher sur le site internet.</p>
@@ -100,7 +100,7 @@
 
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <img src="/images/entraineur.png" class="card-img-top img-dashboard-admin" alt="Mise à Jour Site">
+                    <img src="/images/calendar2.png" class="card-img-top img-dashboard-admin" alt="Mise à Jour Site">
                     <div class="card-body">
                         <h5 class="card-title">EVENEMENTS</h5>
                         <p class="card-text">Gestion des évènements à afficher sur le calendrier sur le site internet.</p>

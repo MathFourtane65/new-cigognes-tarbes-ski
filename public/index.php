@@ -180,6 +180,10 @@ switch ($request_uri) {
         $licencieController->showDetailsLicencieByAdmin();
         break;
 
+    case '/reset-creditentials-process':
+        $licencieController->resetAndSendCreditentialsByAdmin();
+        break;
+
 
     case '/admin/relations-comptes':
         $relationsComptesController->showListeRelations();

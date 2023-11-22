@@ -37,7 +37,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
         <a href="/admin/evenements"><button title="Retour à la liste des évènements" class="btn btn-dark my-0" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
 
-            <h3 class="my-0">Enregistrer un évènement (à afficher sur le site internet)</h3>
+            <h3 class="my-0">Enregistrer un évènement</h3>
             <div>
                 <p class="consigne-formulaire my-0">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
             </div>
