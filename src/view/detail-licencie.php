@@ -43,7 +43,7 @@
             </div>
             <div class="col-md-4 d-flex justify-content-end">
                 <?php if (!empty($licencie['mail'])) : ?>
-                    <button title="Envoyer nouveaux identifiants par mail" class="btn btn-dark"><i class="bi bi-envelope-arrow-up"></i></button>
+                    <button title="Envoyer nouveaux identifiants par mail" class="btn btn-dark" disabled><i class="bi bi-envelope-arrow-up"></i></button>
                 <?php else : ?>
                     <button title="Impossible d'envoyer un mail à ce licencié" class="btn btn-dark" disabled><i class="bi bi-envelope-slash"></i></button>
                 <?php endif; ?>

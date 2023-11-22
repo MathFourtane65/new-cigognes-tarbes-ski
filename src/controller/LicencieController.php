@@ -86,7 +86,7 @@ class LicencieController
             $to = $mail; // Email du licencié
             $subject = "Identifiants CIGOGNES TARBES SKI";
             $message = "Bonjour " . $prenom . ",\n\nVoici vos identifiants pour accéder à votre espace licencié :\nIdentifiant: " . $identifiant . "\nMot de passe: " . $password . "\n\nSelon votre situation, des comptes dits 'enfants' seront rattachés à votre compte.\n\nCordialement,\nL'équipe du Club des Cigognes.";
-            $from = "votreadresseemail@example.com";
+            $from = "contact@cigognes-tarbes-ski.fr";
             $fromName = "Cigognes Tarbes Ski";
             // Envoyer l'email
             EmailSender::sendMail($to, $subject, $message, $from, $fromName);
