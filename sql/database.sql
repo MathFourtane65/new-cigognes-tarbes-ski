@@ -77,6 +77,16 @@ CREATE TABLE actualites_flash (
     cache BOOLEAN NOT NULL DEFAULT 0
 );
 
+/*--------------------------------------------- MISE A JOUR BDD 22/11/2023 ------------------------------------------------------------*/
 
+CREATE TABLE moniteurs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    mail VARCHAR(255),
+    telephone VARCHAR(15),
+    photo VARCHAR(255),
+    niveau VARCHAR(50)
+);
 
 

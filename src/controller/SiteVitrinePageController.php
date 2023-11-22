@@ -5,10 +5,12 @@
 class SiteVitrinePageController
 {
     private $actualitesFlashModel;
+    private $moniteurModel;
 
-    public function __construct($actualitesFlashModel)
+    public function __construct($actualitesFlashModel, $moniteurModel)
     {
         $this->actualitesFlashModel = $actualitesFlashModel;
+        $this->moniteurModel = $moniteurModel;
     }
 
     public function showBureauPage()
@@ -61,6 +63,7 @@ class SiteVitrinePageController
     public function showMoniteursPage()
     {
         $lastActualitesFlash = $this->actualitesFlashModel->getLashActualitesFlash();
+        $moniteurs = $this->moniteurModel->getAllMoniteursSortByNom();
 
         require '../src/view/moniteursPage.php';
     }

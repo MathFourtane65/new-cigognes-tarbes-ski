@@ -17,6 +17,7 @@ include '../src/model/Article.php';
 include '../src/model/Image.php';
 include '../src/model/AssociationArticlesImages.php';
 include '../src/model/ActualitesFlash.php';
+include '../src/model/Moniteur.php';
 
 include '../src/controller/AdminLoginController.php';
 include '../src/controller/LicencieController.php';
@@ -26,6 +27,7 @@ include '../src/controller/ArticleController.php';
 include '../src/controller/ImageController.php';
 include '../src/controller/AssociationArticlesImagesController.php';
 include '../src/controller/ActualitesFlashController.php';
+include '../src/controller/MoniteurController.php';
 
 include '../src/controller/HomePageController.php';
 include '../src/controller/SiteVitrinePageController.php';
@@ -38,6 +40,7 @@ $articleModel = new Article($db);
 $imageModel = new Image($db);
 $associationArticlesImagesModel = new AssociationArticlesImages($db);
 $actualitesFlashModel = new ActualitesFlash($db);
+$moniteurModel = new Moniteur($db);
 
 $adminLoginController = new AdminLoginController($adminModel);
 $licencieController = new LicencieController($licencieModel, $relationsComptes);
@@ -47,9 +50,10 @@ $articleController = new ArticleController($articleModel, $imageModel, $associat
 $imageController = new ImageController($imageModel);
 $associationArticlesImagesController = new AssociationArticlesImagesController($associationArticlesImagesModel);
 $actualitesFlashController = new ActualitesFlashController($actualitesFlashModel);
+$moniteurController = new MoniteurController($moniteurModel);
 
 $homePageController = new HomePageController($articleModel, $actualitesFlashModel);
-$siteVitrinePageController = new SiteVitrinePageController($actualitesFlashModel);
+$siteVitrinePageController = new SiteVitrinePageController($actualitesFlashModel, $moniteurModel);
 
 //Système de routage
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -225,8 +229,24 @@ switch ($request_uri) {
         $actualitesFlashController->showUpdateActualitesFlash();
         break;
 
-        case '/update-actualites-flash-process':
+    case '/update-actualites-flash-process':
         $actualitesFlashController->updateActualitesFlash();
+        break;
+
+    case '/admin/moniteurs':
+        $moniteurController->showListeMoniteurs();
+        break;
+
+    case '/admin/moniteurs/new':
+        $moniteurController->showCreateMoniteurForm();
+        break;
+
+    case '/create-moniteur-process':
+        $moniteurController->processCreateMoniteur();
+        break;
+
+    case '/delete-moniteur-process':
+        $moniteurController->deleteMoniteur();
         break;
 
 

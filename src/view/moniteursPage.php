@@ -1,5 +1,5 @@
-<?php require_once('components/header.php');?>
-<?php require_once('components/navbar.php');?>
+<?php require_once('components/header.php'); ?>
+<?php require_once('components/navbar.php'); ?>
 
 <head>
     <!-- Méta-tag viewport essentiel pour le responsive design -->
@@ -15,124 +15,38 @@
 
 
 <body>
-<div class="container">
-    <!-- contacts card -->
-    <div class="card card-default" id="card_contacts">
-        <div id="contacts" class="panel-collapse collapse show" aria-expanded="true" >
-            <ul class="list-group pull-down" id="contact-list">
-                
-              <li class="list-group-item">
-                <div class="row w-100">
-                    <div class="col-12 col-sm-6 col-md-3 px-0">
-                        <img src="/images/user.png" alt="Mike Anamendolla" class="rounded-circle mx-auto d-block img-fluid">
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-                        <span class="fa fa-mobile fa-2x text-success float-right pulse" title="online now"></span>
-                        <label class="name lead">Prénom NOM</label>
-                        <br> 
-                        <span class="fa fa-map-marker fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="5842 Hillcrest Rd"></span>
-                        <span class="text-muted">NIVEAU</span>
-                        <br/>
-                        <!-- <br>
-                        <span class="fa fa-phone fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="(870) 288-4149"></span>
-                        <span class="text-muted small">01 02 03 04 05</span>
-                        <br>
-                        <span class="fa fa-envelope fa-fw text-muted" data-toggle="tooltip" data-original-title="" title=""></span>
-                        <span class="text-muted small text-truncate">prenom.nom@mail.com</span> -->
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Vérifiez si la liste des moniteurs est vide -->
+            <?php if (empty($moniteurs)) : ?>
+                <div class="col-12">
+                    <div class="alert alert-info" role="alert">
+                        LA LISTE DES MONITEURS DU CLUB EST BIENTÔT DISPONIBLE.
                     </div>
                 </div>
-              </li>
-
-              <li class="list-group-item">
-                <div class="row w-100">
-                    <div class="col-12 col-sm-6 col-md-3 px-0">
-                        <img src="/images/user.png" alt="Mike Anamendolla" class="rounded-circle mx-auto d-block img-fluid">
+            <?php else : ?>
+                <!-- Boucle sur les moniteurs existants -->
+                <?php foreach ($moniteurs as $moniteur) : ?>
+                    <div class="col-md-4 mb-3">
+                        <div class="card moniteur-card">
+                            <img src="<?= !empty($moniteur['photo']) ? $moniteur['photo'] : '/images/uploads/moniteurs/entraineur.png' ?>" class="card-img-top" alt="Photo de <?= htmlspecialchars($moniteur['prenom'] . ' ' . $moniteur['nom']) ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= htmlspecialchars($moniteur['prenom']) . ' ' . htmlspecialchars($moniteur['nom']) ?></h5>
+                                <?php if (!empty($moniteur['niveau'])) : ?>
+                                    <p class="card-text">Niveau: <?= htmlspecialchars($moniteur['niveau']) ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-                        <span class="fa fa-mobile fa-2x text-success float-right pulse" title="online now"></span>
-                        <label class="name lead">Prénom NOM</label>
-                        <br> 
-                        <span class="fa fa-map-marker fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="5842 Hillcrest Rd"></span>
-                        <span class="text-muted">NIVEAU</span>
-                        <!-- <br>
-                        <span class="fa fa-phone fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="(870) 288-4149"></span>
-                        <span class="text-muted small">01 02 03 04 05</span>
-                        <br>
-                        <span class="fa fa-envelope fa-fw text-muted" data-toggle="tooltip" data-original-title="" title=""></span>
-                        <span class="text-muted small text-truncate">prenom.nom@mail.com</span> -->
-                    </div>
-                </div>
-              </li>
-
-              <li class="list-group-item">
-                <div class="row w-100">
-                    <div class="col-12 col-sm-6 col-md-3 px-0">
-                        <img src="/images/user.png" alt="Mike Anamendolla" class="rounded-circle mx-auto d-block img-fluid">
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-                        <span class="fa fa-mobile fa-2x text-success float-right pulse" title="online now"></span>
-                        <label class="name lead">Prénom NOM</label>
-                        <br> 
-                        <span class="fa fa-map-marker fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="5842 Hillcrest Rd"></span>
-                        <span class="text-muted">NIVEAU</span>
-                        <!-- <br>
-                        <span class="fa fa-phone fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="(870) 288-4149"></span>
-                        <span class="text-muted small">01 02 03 04 05</span>
-                        <br>
-                        <span class="fa fa-envelope fa-fw text-muted" data-toggle="tooltip" data-original-title="" title=""></span>
-                        <span class="text-muted small text-truncate">prenom.nom@mail.com</span> -->
-                    </div>
-                </div>
-              </li>
-
-              <li class="list-group-item">
-                <div class="row w-100">
-                    <div class="col-12 col-sm-6 col-md-3 px-0">
-                        <img src="/images/user.png" alt="Mike Anamendolla" class="rounded-circle mx-auto d-block img-fluid">
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-                        <span class="fa fa-mobile fa-2x text-success float-right pulse" title="online now"></span>
-                        <label class="name lead">Prénom NOM</label>
-                        <br> 
-                        <span class="fa fa-map-marker fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="5842 Hillcrest Rd"></span>
-                        <span class="text-muted">NIVEAU</span>
-                        <!-- <br>
-                        <span class="fa fa-phone fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="(870) 288-4149"></span>
-                        <span class="text-muted small">01 02 03 04 05</span>
-                        <br>
-                        <span class="fa fa-envelope fa-fw text-muted" data-toggle="tooltip" data-original-title="" title=""></span>
-                        <span class="text-muted small text-truncate">prenom.nom@mail.com</span> -->
-                    </div>
-                </div>
-              </li>
-
-              <li class="list-group-item">
-                <div class="row w-100">
-                    <div class="col-12 col-sm-6 col-md-3 px-0">
-                        <img src="/images/user.png" alt="Mike Anamendolla" class="rounded-circle mx-auto d-block img-fluid">
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-                        <span class="fa fa-mobile fa-2x text-success float-right pulse" title="online now"></span>
-                        <label class="name lead">Prénom NOM</label>
-                        <br> 
-                        <span class="fa fa-map-marker fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="5842 Hillcrest Rd"></span>
-                        <span class="text-muted">NIVEAU</span>
-                        <!-- <br>
-                        <span class="fa fa-phone fa-fw text-muted" data-toggle="tooltip" title="" data-original-title="(870) 288-4149"></span>
-                        <span class="text-muted small">01 02 03 04 05</span>
-                        <br>
-                        <span class="fa fa-envelope fa-fw text-muted" data-toggle="tooltip" data-original-title="" title=""></span>
-                        <span class="text-muted small text-truncate">prenom.nom@mail.com</span> -->
-                    </div>
-                </div>
-              </li>
-
-            </ul>
-            <!--/contacts list-->
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
-</div>
+
+
+
 </body>
 
 
-<?php require_once('components/footer.php');?>
+<?php require_once('components/footer.php'); ?>

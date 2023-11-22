@@ -68,6 +68,18 @@
                 </div>
             </div>
 
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                <img src="/images/icon-admin.png" class="card-img-top img-dashboard-admin" alt="Mise à Jour Site">
+                    <div class="card-body">
+                        <h5 class="card-title">MONITEURS</h5>
+                        <p class="card-text">Gestion des moniteurs à affciher sur le site internet.</p>
+                        <a href="/admin/moniteurs" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </body>
