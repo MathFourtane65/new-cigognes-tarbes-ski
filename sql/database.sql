@@ -99,4 +99,10 @@ CREATE TABLE membres_bureau (
     role VARCHAR(100)
 );
 
+CREATE TABLE evenements (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE NOT NULL,
+    nom VARCHAR(255) NOT NULL,
+    lieu VARCHAR(255) NOT NULL
+);
 

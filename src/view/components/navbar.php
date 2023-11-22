@@ -25,10 +25,10 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item" href="/moniteurs">Les Moniteurs</a></li>
-                        <li>
+                        <!-- <li>
                             <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="/partenaires">Les Partenaires</a></li>
+                        </li> -->
+                        <!-- <li><a class="dropdown-item" href="/partenaires">Les Partenaires</a></li> -->
                     </ul>
                 </li>
                 <li class="nav-item">

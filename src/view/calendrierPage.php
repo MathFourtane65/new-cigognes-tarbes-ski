@@ -15,7 +15,40 @@
 
 
 <body>
-
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Vérifiez si la liste des évènements est vide -->
+            <?php if (empty($evenements)) : ?>
+                <div class="col-12">
+                    <div class="alert alert-info" role="alert">
+                        LE CALENDRIER DES ÉVÉNEMENTS EST BIENTÔT DISPONIBLE.
+                    </div>
+                </div>
+            <?php else : ?>
+                <!-- Boucle sur les événements existants -->
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Évènement</th>
+                                <th>Lieu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($evenements as $evenement) : ?>
+                                <tr>
+                                    <td><?= date('d/m/Y', strtotime($evenement['date'])) ?></td>
+                                    <td><?= htmlspecialchars($evenement['nom']) ?></td>
+                                    <td><?= htmlspecialchars($evenement['lieu']) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
 </body>
 
 

@@ -19,6 +19,7 @@ include '../src/model/AssociationArticlesImages.php';
 include '../src/model/ActualitesFlash.php';
 include '../src/model/Moniteur.php';
 include '../src/model/MembreBureau.php';
+include '../src/model/EvenementModel.php';
 
 include '../src/controller/AdminLoginController.php';
 include '../src/controller/LicencieController.php';
@@ -30,6 +31,7 @@ include '../src/controller/AssociationArticlesImagesController.php';
 include '../src/controller/ActualitesFlashController.php';
 include '../src/controller/MoniteurController.php';
 include '../src/controller/MembreBureauController.php';
+include '../src/controller/EvenementController.php';
 
 include '../src/controller/HomePageController.php';
 include '../src/controller/SiteVitrinePageController.php';
@@ -44,6 +46,7 @@ $associationArticlesImagesModel = new AssociationArticlesImages($db);
 $actualitesFlashModel = new ActualitesFlash($db);
 $moniteurModel = new Moniteur($db);
 $membreBureauModel = new MembreBureau($db);
+$evenementModel = new EvenementModel($db);
 
 $adminLoginController = new AdminLoginController($adminModel);
 $licencieController = new LicencieController($licencieModel, $relationsComptes);
@@ -55,9 +58,10 @@ $associationArticlesImagesController = new AssociationArticlesImagesController($
 $actualitesFlashController = new ActualitesFlashController($actualitesFlashModel);
 $moniteurController = new MoniteurController($moniteurModel);
 $membreBureauController = new MembreBureauController($membreBureauModel);
+$evenementController = new EvenementController($evenementModel);
 
 $homePageController = new HomePageController($articleModel, $actualitesFlashModel);
-$siteVitrinePageController = new SiteVitrinePageController($actualitesFlashModel, $moniteurModel, $membreBureauModel);
+$siteVitrinePageController = new SiteVitrinePageController($actualitesFlashModel, $moniteurModel, $membreBureauModel, $evenementModel);
 
 //Système de routage
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -107,9 +111,9 @@ switch ($request_uri) {
         $siteVitrinePageController->showMoniteursPage();
         break;
 
-    case '/partenaires':
-        $siteVitrinePageController->showPartenairesPage();
-        break;
+        // case '/partenaires':
+        //     $siteVitrinePageController->showPartenairesPage();
+        //     break;
 
 
 
@@ -269,6 +273,23 @@ switch ($request_uri) {
         $membreBureauController->deleteMembreBureau();
         break;
 
+    case '/admin/evenements':
+        $evenementController->showListeEvenements();
+        break;
+
+    case '/admin/evenements/new':
+        $evenementController->showCreateEvenementForm();
+        break;
+
+    case '/create-evenement-process':
+        $evenementController->processCreateEvenement();
+        break;
+
+    case '/delete-evenement-process':
+        $evenementController->deleteEvenement();
+        break;
+
+
 
 
 
@@ -296,6 +317,7 @@ switch ($request_uri) {
 
     default:
         header('HTTP/1.0 404 Not Found');
-        echo "404 Not Found";
+        $siteVitrinePageController->show404Page();
+        //echo "404 Not Found";
         break;
 }
