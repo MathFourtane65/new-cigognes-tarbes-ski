@@ -22,6 +22,9 @@
                     <img src="/images/icon-admin.png" class="img-fluid logo-form-conn-admin" alt="Club Logo" />
 
                     <h3 class="titre">Connexion Administrateur</h3>
+
+                    <p><a href="/fichiers/XXXXXXXX.pdf" class="btn btn-primary btn-lg disabled" download>Guide d'utilisation ADMIN (pdf) <br>BIENTOT DISPONIBLE</a></p>
+
                 </div>
 
                 <?php if (isset($_GET['error'])) : ?>
