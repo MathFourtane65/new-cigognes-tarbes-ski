@@ -6,11 +6,15 @@ class LicencieController
 {
     private $licencieModel;
     private $relationsComptesModel;
+    private $sortieModel;
+    private $inscriptionModel;
 
-    public function __construct($licencieModel, $relationsComptesModel)
+    public function __construct($licencieModel, $relationsComptesModel, $sortieModel, $inscriptionModel)
     {
         $this->licencieModel = $licencieModel;
         $this->relationsComptesModel = $relationsComptesModel;
+        $this->sortieModel = $sortieModel;
+        $this->inscriptionModel = $inscriptionModel;
     }
 
     public function showLoginForm()
@@ -282,5 +286,57 @@ class LicencieController
         } else {
             header('Location: /admin/licencies/details?id=' . $id . '&error=failed_reset_creditentials');
         }
+    }
+
+    public function showInscriptionSortieLicencie()
+    {
+        if (!isset($_SESSION['licencie_logged_in']) || $_SESSION['licencie_logged_in'] !== true) {
+            header("Location: /connexion-licencie");
+            exit();
+        }
+        $id = $_SESSION['licencie_id'];
+        $licencie = $this->licencieModel->getLicencie($id);
+        $enfants = $this->relationsComptesModel->getChildrenByParentId($id);
+        //$parents = $this->relationsComptesModel->getParentsByChildId($id);
+
+        $sortiesOuvertes = $this->sortieModel->getAllSortiesBeforeDateFinInscriptions();
+        if (!$licencie) {
+            // Gérer l'erreur si le licencié n'existe pas
+            header("Location: /licencie?error=not_found");
+            exit();
+        }
+        require '../src/view/licencie-inscription-sortie-p1.php';
+    }
+
+    public function showInscriptionsSortieLicencieDetails()
+    {
+        if (!isset($_SESSION['licencie_logged_in']) || $_SESSION['licencie_logged_in'] !== true) {
+            header("Location: /connexion-licencie");
+            exit();
+        }
+
+        $id_sortie_selectionnee = filter_input(INPUT_POST, 'id_sortie_selectionnee', FILTER_SANITIZE_NUMBER_INT);
+        if (!$id_sortie_selectionnee) {
+            // Gérer l'erreur si l'ID de la sortie n'est pas fourni
+            header("Location: /licencie/inscription-sortie?error=no_sortie_selected");
+            exit();
+        }
+        $id_licencie = $_SESSION['licencie_id'];
+        $licencie = $this->licencieModel->getLicencie($id_licencie);
+        $enfants = $this->relationsComptesModel->getChildrenByParentId($id_licencie);
+        $sortieSelectionne = $this->sortieModel->getSortie($id_sortie_selectionnee);
+
+        $reservedBusPlaces = $this->inscriptionModel->countReservedBusPlaces($id_sortie_selectionnee);
+        $availableBusPlaces = $sortieSelectionne['places_bus'] - $reservedBusPlaces;
+        $isBusUnlimited = is_null($sortieSelectionne['places_bus']);
+        $isBusFull = !$isBusUnlimited && $availableBusPlaces <= 0;
+        
+        $licencieInscrit = $this->inscriptionModel->isLicencieInscrit($id_licencie, $id_sortie_selectionnee);
+        $enfantsInscrits = [];
+        foreach ($enfants as $enfant) {
+            $enfantsInscrits[$enfant['id_enfant']] = $this->inscriptionModel->isLicencieInscrit($enfant['id_enfant'], $id_sortie_selectionnee);
+        }
+
+        require '../src/view/licencie-inscription-sortie-p2.php';
     }
 }

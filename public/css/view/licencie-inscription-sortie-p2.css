@@ -1,0 +1,48 @@
+.licencie-inscription-p2-form {
+    width: 80%;
+    text-align: left;
+    margin-top: 20px;
+    border: red 2px solid;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.titre-section-form{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.champ-obligatoire {
+    font-weight: bold;
+    color: red;
+}
+
+.consigne-formulaire {
+    font-style: italic;
+}
+
+.box-licencie {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin:0 auto;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.text-deja-inscrit {
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}
+
+.nbr-places-bus {
+    font-weight: bold;
+    font-style: italic;
+    color: green;
+}
+
+.no-bus-places {
+    color: red;
+    font-weight: bold;
+}

@@ -1,0 +1,22 @@
+.tableau-licencies-importes {
+  border: solid 0.5px black;
+  border-radius: 10px;
+  margin-top: 15px;
+  padding: 15px;
+}
+
+td {
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.buttons-actions {
+  display: flex; /* This will lay out the children (buttons) in a row */
+  flex-wrap: nowrap; /* This will prevent the buttons from wrapping */
+  justify-content: space-between; /* This will distribute spacing evenly between the buttons */
+  align-items: center; /* This will vertically align the buttons in case they are of different sizes */
+  white-space: nowrap; /* This will prevent the text inside the buttons from wrapping */
+  vertical-align: middle;
+}
+
+

@@ -42,7 +42,7 @@
                     <div class="card-body">
                         <h5 class="card-title">ADMINISTRATEURS</h5>
                         <p class="card-text">Gestion des comptes administrateurs du site internet.</p>
-                        <a href="/admin/administrateurs" class="btn btn-primary disabled">Accéder</a>
+                        <a href="/admin/administrateurs" class="btn btn-primary">Accéder</a>
                     </div>
                 </div>
             </div>

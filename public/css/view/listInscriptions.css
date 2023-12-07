@@ -1,4 +1,4 @@
-.tableau-licencies {
+.tableau-inscriptions {
     border: solid 0.5px black;
     border-radius: 10px;
     margin-top: 15px;
@@ -16,5 +16,3 @@ td {
     align-items: center; /* This will vertically align the buttons in case they are of different sizes */
     white-space: nowrap; /* This will prevent the text inside the buttons from wrapping */
 }
-
-

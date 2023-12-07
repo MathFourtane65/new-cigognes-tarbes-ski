@@ -54,6 +54,7 @@
                         <td><?= htmlspecialchars($sortie['date_fin_inscriptions']) ?></td>
                         <td></td>
                         <td class="buttons-actions">
+                        <a href="/admin/sorties/inscriptions?id=<?= $sortie['id'] ?>" class="btn btn-info me-1" title="Liste des inscrits"><i class="bi bi-eye"></i></a>
                             <!-- <a href="/admin/update-licencie?id=<?= $sortie['id'] ?>" class="btn btn-warning me-2" title="Mettre à jour le licencié"><i class="bi bi-pencil"></i></a> -->
                             <!-- <button title="Supprimer le licencié" type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $licencie['id'] ?>"> <i class="bi bi-trash"></i></button> -->
                         </td>

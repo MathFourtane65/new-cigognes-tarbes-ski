@@ -34,7 +34,9 @@
 
         <!-- Barre d'outils -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="my-0">Enregistrer un Licencié</h3>
+        <a href="/admin/licencies"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+
+            <h3>Enregistrer un Licencié</h3>
             <div>
                 <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
             </div>
@@ -93,7 +95,7 @@
 
             <div class="col-12">
                 <button type="submit" class="btn btn-success">Enregistrer</button>
-                <a href="/admin/licencies"><button class="btn btn-danger" type="button">Annuler / Retour</button></a>
+                <a href="/admin/licencies"><button class="btn btn-danger" type="button">Annuler</button></a>
             </div>
         </form>
     </div>

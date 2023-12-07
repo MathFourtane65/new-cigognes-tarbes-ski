@@ -1,11 +1,3 @@
-<?php if (isset($_GET['error'])) : ?>
-    <div class="alert alert-danger" role="alert">
-        <?php
-        if ($_GET['error'] == 'missing_fields') echo "Tous les champs sont obligatoires.";
-        if ($_GET['error'] == 'invalid_credentials') echo "Identifiant ou mot de passe incorrect.";
-        ?>
-    </div><?php endif; ?>
-
 <head>
     <!-- Méta-tag viewport essentiel pour le responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,12 +13,18 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
 
+
+
             <div class="card mt-5">
+
                 <div class="card-footer text-center">
                     <a href="/">Retour à l'accueil</a>
                 </div>
 
                 <div class="card-header text-center">
+<div class="alert alert-info" role="alert">
+                        La connexion des licenciés est bientôt disponible
+                    </div>
                     <img src="/images/logo.png" class="img-fluid logo-form-conn-licencie" alt="Club Logo" />
 
                     <h3 class="titre">Connexion Licencié</h3>
@@ -51,7 +49,7 @@
                             <input type="password" class="form-control" name="password" required>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Se connecter</button>
+                            <button type="submit" class="btn btn-primary">BIENTÔT DISPONIBLE</button>
                         </div>
                     </form>
                 </div>

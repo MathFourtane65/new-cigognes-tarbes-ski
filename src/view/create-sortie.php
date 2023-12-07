@@ -13,8 +13,8 @@
 <body>
 
     <div class="container create-sortie-form">
-    
-    <?php if (isset($_GET['success'])) : ?>
+
+        <?php if (isset($_GET['success'])) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php
                 if ($_GET['success'] == 'create') echo "Création de la sortie réussie.";
@@ -23,7 +23,7 @@
 
             </div><?php endif; ?>
 
-            <?php if (isset($_GET['error'])) : ?>
+        <?php if (isset($_GET['error'])) : ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php
                 if ($_GET['error'] == 'failed_create') echo "Erreur lors de la création de la sortie.";
@@ -33,11 +33,11 @@
             </div><?php endif; ?>
 
 
-            <!-- Barre d'outils -->
-            <div class="d-flex justify-content-between align-items-center mb-3">
+        <!-- Barre d'outils -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
             <h3 class="my-0">Enregistrer une Sortie</h3>
             <div>
-            <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
+                <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
             </div>
         </div>
 
@@ -45,11 +45,11 @@
             <h5 class="titre-section-form">Infos</h5>
             <div class="col-md-5">
                 <label for="nom" class="form-label">Nom<span class="champ-obligatoire">*</span></label>
-                <input type="text" class="form-control" id="nom" name="nom" required>
+                <input type="text" placeholder="Sortie GAVARNIE" class="form-control" id="nom" name="nom" required>
             </div>
             <div class="col-md-5">
                 <label for="lieu" class="form-label">Lieu<span class="champ-obligatoire">*</span></label>
-                <input type="text" class="form-control" id="lieu" name="lieu" required>
+                <input type="text" placeholder="Gavarnie-Gèdre" class="form-control" id="lieu" name="lieu" required>
             </div>
             <div class="col-md-2">
                 <label for="date" class="form-label">Date de la sortie<span class="champ-obligatoire">*</span></label>
@@ -61,15 +61,24 @@
                 <label for="date_fin_inscriptions" class="form-label">Date de fin d'inscriptions</label>
                 <input type="datetime-local" class="form-control" id="date_fin_inscriptions" name="date_fin_inscriptions">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="places_bus" class="form-label">Nombres de places dans le bus</label>
                 <input type="number" class="form-control" id="places_bus" name="places_bus">
-            </div>
 
-            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-4">
                 <label for="heure_depart_bus" class="form-label">Heure de départ du bus</label>
                 <input type="time" class="form-control" id="heure_depart_bus" name="heure_depart_bus">
             </div>
+
+            <div class="col-md-8">
+                <input class="form-check-input" type="checkbox" id="unlimited_places" name="unlimited_places">
+                <label class="form-check-label fw-bold" for="unlimited_places">
+                    <= Cocher si pas de limite de places </label>
+
+            </div>
+
 
             <div class="col-12">
                 <button type="submit" class="btn btn-success">Enregistrer</button>

@@ -67,4 +67,11 @@ class Sortie
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    // Récupère toutes les sorties avant l'heure de fin d'isnciption
+    public function getAllSortiesBeforeDateFinInscriptions() {
+        $stmt = $this->db->prepare("SELECT * FROM sorties WHERE date_fin_inscriptions > NOW()");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

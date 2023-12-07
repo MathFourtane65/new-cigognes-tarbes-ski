@@ -26,7 +26,9 @@
 
         <!-- Barre d'outils -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="my-0">Liste des relations "parents-enfants" des licenciés</h3>
+        <a href="/admin/licencies"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+
+            <h3>Liste des relations "parents-enfants" des licenciés</h3>
             <div>
                 <a href="/admin/relations-comptes/new"><button title="Enregistrer une relation" class="btn btn-dark me-2" type="button"><i class="bi bi-plus-circle"></i></button></a>
                 <a href="/admin/licencies"><button title="Liste des licenciés" class="btn btn-dark me-2" type="button"><i class="bi bi-people"></i></button></a>

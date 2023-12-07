@@ -59,21 +59,20 @@ class RelationsComptes
         return $stmt->execute();
     }
 
-    // Récupère tous les enfants d'un parent
-    public function getChildrenByParentId($idParent)
-    {
-        $stmt = $this->db->prepare("
-                SELECT rc.id, p.nom AS nom_parent, p.prenom AS prenom_parent, e.nom AS nom_enfant, e.prenom AS prenom_enfant 
-                FROM relations_comptes rc
-                INNER JOIN licencies p ON rc.id_parent = p.id
-                INNER JOIN licencies e ON rc.id_enfant = e.id
-                WHERE rc.id_parent = :id_parent
-                ORDER BY p.nom ASC, p.prenom ASC;
-            ");
-        $stmt->bindParam(":id_parent", $idParent);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
+// Récupère tous les enfants d'un parent avec toutes les informations nécessaires
+public function getChildrenByParentId($idParent)
+{
+    $stmt = $this->db->prepare("
+        SELECT e.id AS id_enfant, e.nom AS nom_enfant, e.prenom AS prenom_enfant, e.date_naissance AS date_naissance_enfant, e.mail AS mail_enfant, e.telephone AS telephone_enfant, e.code_postal AS code_postal_enfant, e.ville AS ville_enfant, e.adresse AS adresse_enfant
+        FROM relations_comptes rc
+        INNER JOIN licencies e ON rc.id_enfant = e.id
+        WHERE rc.id_parent = :id_parent
+        ORDER BY e.nom ASC, e.prenom ASC;
+    ");
+    $stmt->bindParam(":id_parent", $idParent);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
 
     // Récupère tous les parents d'un enfant
     public function getParentsByChildId($idEnfant)

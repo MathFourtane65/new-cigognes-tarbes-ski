@@ -106,3 +106,41 @@ CREATE TABLE evenements (
     lieu VARCHAR(255) NOT NULL
 );
 
+
+/*--------------------------------------------- MISE A JOUR BDD 24/11/2023 ------------------------------------------------------------*/
+
+CREATE TABLE licencies_importes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    date_naissance DATE NOT NULL,
+    mail VARCHAR(255),
+    telephone VARCHAR(15),
+    adresse TEXT,
+    code_postal VARCHAR(10),
+    ville VARCHAR(255),
+    niveau VARCHAR(50),
+    password VARCHAR(255),
+    identifiant VARCHAR(255)
+);
+
+ALTER TABLE administrateurs
+ADD COLUMN mail_associe VARCHAR(255);
+
+UPDATE `administrateurs` SET `mail_associe` = 'mathieu.fourtane@gmail.com' WHERE `administrateurs`.`id` = 1; 
+
+/*--------------------------------------------- MISE A JOUR BDD 01/12/2023 ------------------------------------------------------------*/
+
+CREATE TABLE inscriptions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    licencie_id INT NOT NULL,
+    sortie_id INT NOT NULL,
+    bus BOOLEAN NOT NULL,
+    lieu_bus VARCHAR(255),
+    montant_licencie DECIMAL(10, 2),
+    paye BOOLEAN NOT NULL,
+    commentaire_licencie TEXT,
+    commentaire_admin TEXT,
+    FOREIGN KEY (licencie_id) REFERENCES licencies(id),
+    FOREIGN KEY (sortie_id) REFERENCES sorties(id)
+);

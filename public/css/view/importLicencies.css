@@ -1,0 +1,31 @@
+.import-licencie-form {
+    width: 80%;
+    text-align: left;
+    margin-top: 20px;
+    border: solid 0.5px black;
+    padding: 20px;
+    border-radius: 20px;
+
+}
+
+.titre-section-form{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.champ-obligatoire {
+    font-weight: bold;
+    color: red;
+}
+
+.consigne-formulaire {
+    font-style: italic;
+}
+
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* S'assurer qu'il s'affiche au-dessus des autres éléments */
+}

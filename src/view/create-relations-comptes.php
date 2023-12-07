@@ -35,7 +35,9 @@
 
             <!-- Barre d'outils -->
             <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="my-0">Enregistrer une Relation "Parent-Enfant"</h3>
+            <a href="/admin/relations-comptes"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+
+            <h3 class=>Enregistrer une Relation "Parent-Enfant"</h3>
             <div>
             <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
             </div>
@@ -44,27 +46,27 @@
         <form class="row g-3 needs-validation" action="/create-relations-comptes-process" method="post">
             <h5 class="titre-section-form">Relations Comptes</h5>
             <div class="col-md-6">
-                <label for="parentSelect" class="form-label">Choisir un Parent</label>
+                <label for="parentSelect" class="form-label">Choisir un Parent<span class="champ-obligatoire">*</span></label>
                 <select class="form-select" id="parentSelect" name="parent_id">
                     <option value="">----Sélectionner un Parent----</option>
                     <?php foreach ($licencies as $licencie) : ?>
-                        <option value="<?= $licencie['id'] ?>"><?= htmlspecialchars($licencie['prenom'] . ' ' . $licencie['nom']) ?></option>
+                        <option value="<?= $licencie['id'] ?>"><?= htmlspecialchars($licencie['nom'] . ' ' . $licencie['prenom']) ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
             <div class="col-md-6">
-                <label for="childrenSelect" class="form-label">Choisir le(s) Enfant(s)</label>
+                <label for="childrenSelect" class="form-label">Choisir le(s) Enfant(s)<span class="champ-obligatoire">*</span></label>
                 <select multiple class="form-select" id="childrenSelect" name="children_ids[]">
                     <?php foreach ($licencies as $licencie) : ?>
-                        <option value="<?= $licencie['id'] ?>"><?= htmlspecialchars($licencie['prenom'] . ' ' . $licencie['nom']) ?></option>
+                        <option value="<?= $licencie['id'] ?>"><?= htmlspecialchars($licencie['nom'] . ' ' . $licencie['prenom']) ?></option>
                     <?php endforeach; ?>
                 </select>
                 <small class="form-text text-muted">Maintenez CTRL pour sélectionner plusieurs enfants.</small>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-success">Enregistrer relation(s)</button>
-                <a href="/admin/relations-comptes"><button class="btn btn-danger" type="button">Annuler / Retour</button></a>
+                <a href="/admin/relations-comptes"><button class="btn btn-danger" type="button">Annuler</button></a>
             </div>
         </form>
     </div>

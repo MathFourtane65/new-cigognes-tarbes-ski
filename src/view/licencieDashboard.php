@@ -12,6 +12,28 @@
 
 <body>
     <div class="container mt-5">
+
+        <?php if (isset($_GET['success'])) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?php
+                if ($_GET['success'] == 'inscription') echo "Inscription à la sortie réussie. Un mail de confirmation va être envoyé (pensez à verifier dans vos SPAMS).";
+                ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            </div><?php endif; ?>
+
+        <?php if (isset($_GET['error'])) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php
+                if ($_GET['error'] == 'inscription') echo "Erreur lors de l'inscription, veuillez réessayer";
+                ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            </div><?php endif; ?>
+
+
+
+
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
@@ -30,7 +52,7 @@
                     <div class="card-body">
                         <h5 class="card-title">INSCRIPTION AUX SORTIES</h5>
                         <p class="card-text">Inscrivez-vous facilement à nos prochaines sorties et ajoutez les membres de votre famille ou vos comptes associés.</p>
-                        <a href="/licencie/inscription-sortie" class="btn btn-primary disabled">BIENTOT DISPONIBLE</a>
+                        <a href="/licencie/inscription-sortie" class="btn btn-primary">BIENTOT DISPONIBLE</a>
                     </div>
                 </div>
             </div>

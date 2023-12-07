@@ -20,6 +20,8 @@ include '../src/model/ActualitesFlash.php';
 include '../src/model/Moniteur.php';
 include '../src/model/MembreBureau.php';
 include '../src/model/EvenementModel.php';
+include '../src/model/LicencieImporte.php';
+include '../src/model/Inscription.php';
 
 include '../src/controller/AdminLoginController.php';
 include '../src/controller/LicencieController.php';
@@ -32,6 +34,8 @@ include '../src/controller/ActualitesFlashController.php';
 include '../src/controller/MoniteurController.php';
 include '../src/controller/MembreBureauController.php';
 include '../src/controller/EvenementController.php';
+include '../src/controller/LicencieImporteController.php';
+include '../src/controller/InscriptionController.php';
 
 include '../src/controller/HomePageController.php';
 include '../src/controller/SiteVitrinePageController.php';
@@ -47,9 +51,11 @@ $actualitesFlashModel = new ActualitesFlash($db);
 $moniteurModel = new Moniteur($db);
 $membreBureauModel = new MembreBureau($db);
 $evenementModel = new EvenementModel($db);
+$licencieImporteModel = new LicencieImporte($db);
+$inscriptionModel = new Inscription($db);
 
 $adminLoginController = new AdminLoginController($adminModel);
-$licencieController = new LicencieController($licencieModel, $relationsComptes);
+$licencieController = new LicencieController($licencieModel, $relationsComptes, $sortieModel, $inscriptionModel);
 $sortieController = new SortieController($sortieModel);
 $relationsComptesController = new RelationsComptesController($relationsComptes, $licencieModel);
 $articleController = new ArticleController($articleModel, $imageModel, $associationArticlesImagesModel, $actualitesFlashModel);
@@ -59,6 +65,8 @@ $actualitesFlashController = new ActualitesFlashController($actualitesFlashModel
 $moniteurController = new MoniteurController($moniteurModel);
 $membreBureauController = new MembreBureauController($membreBureauModel);
 $evenementController = new EvenementController($evenementModel);
+$licencieImporteController = new LicencieImporteController($licencieImporteModel, $licencieModel);
+$inscriptionController = new InscriptionController($inscriptionModel, $licencieModel, $relationsComptes, $sortieModel);
 
 $homePageController = new HomePageController($articleModel, $actualitesFlashModel);
 $siteVitrinePageController = new SiteVitrinePageController($actualitesFlashModel, $moniteurModel, $membreBureauModel, $evenementModel);
@@ -138,6 +146,18 @@ switch ($request_uri) {
         $licencieController->showMesInfosLicencie();
         break;
 
+    case '/licencie/inscription-sortie':
+        $licencieController->showInscriptionSortieLicencie();
+        break;
+
+    case '/licencie/inscription-sortie/details':
+        $licencieController->showInscriptionsSortieLicencieDetails();
+        break;
+
+    case '/process-inscription-sortie-licencie':
+        $inscriptionController->processInscriptionForm();
+        break;
+
 
         // ---------------------------- ESPACE ADMIN -------------------------------
     case '/connexion-admin':
@@ -180,6 +200,22 @@ switch ($request_uri) {
         $licencieController->showDetailsLicencieByAdmin();
         break;
 
+    case '/admin/licencies/import':
+        $licencieImporteController->showImportLicenciesForm();
+        break;
+
+    case '/process-import-licencies':
+        $licencieImporteController->processImportLicencies();
+        break;
+
+    case '/admin/licencies/importes':
+        $licencieImporteController->showListeLicenciesImportes();
+        break;
+
+    case '/valider-import-licencie-process':
+        $licencieImporteController->validerImportLicencies();
+        break;
+
     case '/reset-creditentials-process':
         $licencieController->resetAndSendCreditentialsByAdmin();
         break;
@@ -209,6 +245,10 @@ switch ($request_uri) {
 
     case '/admin/new-sortie':
         $sortieController->showCreateSortieForm();
+        break;
+
+    case '/admin/sorties/inscriptions':
+        $inscriptionController->showListInscriptionsBySortie();
         break;
 
     case '/create-sortie-process':
@@ -291,6 +331,22 @@ switch ($request_uri) {
 
     case '/delete-evenement-process':
         $evenementController->deleteEvenement();
+        break;
+
+    case '/admin/administrateurs':
+        $adminLoginController->showAllAdministateurs();
+        break;
+
+    case '/admin/administrateurs/new':
+        $adminLoginController->showCreateAdministateurForm();
+        break;
+
+    case '/create-administrateur-process':
+        $adminLoginController->processCreateAdministateur();
+        break;
+
+    case '/delete-administrateur-process':
+        $adminLoginController->deleteAdministrateur();
         break;
 
 
