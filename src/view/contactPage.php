@@ -21,9 +21,8 @@
                 <h3>Les Cigognes de Tarbes</h3>
                 <h4>Section Ski</h4>
                 <p>17 Avenue de la Marne, 65000 Tarbes</p>
-                <p>TELEPHONE : <a href="mailto:prenom.nom@gmail.com">A VENIR</a></p>
-                <p>MAIL : <a href="tel:+33600000000">A VENIR</a></p>
-                <p>Horaires des permanences : A VENIR</p>
+                <p><a href="mailto:contact@cigognes-tarbes-ski.fr">contact@cigognes-tarbes-ski.fr</a></p>
+                <p>Horaires des permanences : <strong>Les Jeudis de 18h00 à 19h30</strong></p>
             </div>
             <div class="col-lg-6">
                 <div class="embed-responsive embed-responsive-16by9">
