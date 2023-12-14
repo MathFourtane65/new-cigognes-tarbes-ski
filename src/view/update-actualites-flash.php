@@ -35,7 +35,10 @@
 
         <!-- Barre d'outils -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="my-0">Modifier l'actualité FLASH</h3>
+        <a href="/admin/actualites-flash"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+
+            <h3>Modifier l'actualité FLASH</h3>
+            <div></div>
             <!-- <div>
                 <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
             </div> -->
@@ -56,7 +59,7 @@
 
             <div class="col-12">
                 <button type="submit" class="btn btn-success">Mettre à jour</button>
-                <a href="/admin/actualites-flash"><button class="btn btn-danger" type="button">Annuler / Retour</button></a>
+                <a href="/admin/actualites-flash"><button class="btn btn-danger" type="button">Annuler</button></a>
             </div>
         </form>
     </div>

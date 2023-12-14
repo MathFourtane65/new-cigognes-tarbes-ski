@@ -21,14 +21,18 @@
     <p class="contenu-article"><?= nl2br(html_entity_decode($article['contenu'])) ?></p>
     <!-- Affichage des images associées -->
     <div class="row">
-        <?php foreach ($article['image_paths'] as $path) : ?>
-            <div class="col-md-4 mb-3">
-                <img src="<?= htmlspecialchars($path) ?>" class="img-fluid" alt="Image">
-            </div>
-        <?php endforeach; ?>
-    </div>
-</div>
+        
+        <?php if (!empty($article['image_paths'][0])) : ?>
+            <?php foreach ($article['image_paths'] as $path) : ?>
+                <div class="col-md-4 mb-3">
+                    <img src="<?= htmlspecialchars($path) ?>" class="img-fluid" alt="Image">
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        </div>
 
-</body>
+        </div>
 
-<?php require_once('components/footer.php'); ?>
+        </body>
+
+        <?php require_once('components/footer.php'); ?>

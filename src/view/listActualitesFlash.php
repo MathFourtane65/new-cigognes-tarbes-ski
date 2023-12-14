@@ -26,7 +26,9 @@
 
         <!-- Barre d'outils -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="my-0">Actualites Flash</h3>
+        <a href="/admin"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+    
+        <h3>Actualites Flash</h3>
             <div>
                 <!-- <a href="/admin/new-sortie"><button title="Enregistrer une sortie" class="btn btn-dark me-2" type="button"><i class="bi bi-plus-circle"></i></button></a> -->
                 <!-- <button disabled title="Exporter en .csv" class="btn btn-dark" type="button"><i class="bi bi-file-earmark-excel"></i></button> -->

@@ -255,6 +255,34 @@ switch ($request_uri) {
         $sortieController->processCreateSortie();
         break;
 
+    case '/delete-sortie-process':
+        $sortieController->deleteSortie();
+        break;
+
+    case '/admin/sorties/inscriptions/new':
+        $inscriptionController->showInscriptionSortieAdmin();
+        break;
+
+    case '/admin/sorties/update':
+        $sortieController->showUpdateSortieForm();
+        break;
+
+    case '/update-sortie-process':
+        $sortieController->processUpdateSortie();
+        break;
+
+    case '/admin/inscription-sortie/details':
+        $inscriptionController->showInscriptionSortieAdminDetails();
+        break;
+
+    case '/process-inscription-sortie-admin':
+        $inscriptionController->processInscriptionByAdmin();
+        break;
+
+    case '/delete-inscription-process':
+        $inscriptionController->deleteInscription();
+        break;
+
 
     case '/admin/articles':
         $articleController->showListeArticles();
@@ -262,6 +290,14 @@ switch ($request_uri) {
 
     case '/admin/articles/new':
         $articleController->showCreateArticleForm();
+        break;
+
+    case '/admin/articles/update':
+        $articleController->showUpdateArticleForm();
+        break;
+
+    case '/process-update-article':
+        $articleController->processUpdateArticle();
         break;
 
     case '/process-create-article':

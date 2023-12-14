@@ -74,4 +74,11 @@ class Sortie
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    // Récupère toutes les sorties où la date n'est pas passée
+    public function getAllSortiesWhereDateNotPassed() {
+        $stmt = $this->db->prepare("SELECT * FROM sorties WHERE date > NOW()");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

@@ -35,7 +35,8 @@
 
         <!-- Barre d'outils -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="my-0">Enregistrer un Article</h3>
+        <a href="/admin/articles"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+            <h3>Enregistrer un Article</h3>
             <div>
                 <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
             </div>
@@ -55,7 +56,7 @@
                 <h4 class="titre-section-form">Contenu</h4>
                 <div class="col-md-12">
                     <label for="contenu" class="form-label">Texte<span class="champ-obligatoire">*</span></label>
-                    <textarea class="form-control" id="contenu" name="contenu" required></textarea>
+                    <textarea rows="8" class="form-control" id="contenu" name="contenu" required></textarea>
                 </div>
                 <div class="col-md-12">
                     <label for="images" class="form-label">Images<span class="champ-obligatoire"> ( 15 fichiers maximum et taille total inférieur à 10MB)</span></label>
@@ -64,7 +65,7 @@
 
                 <div class="col-12">
                     <button type="submit" id="submitBtn" class="btn btn-success">Enregistrer l'article</button>
-                    <a href="/admin/articles"><button class="btn btn-danger" type="button">Annuler / Retour</button></a>
+                    <a href="/admin/articles"><button class="btn btn-danger" type="button">Annuler</button></a>
                 </div>
 
         </form>

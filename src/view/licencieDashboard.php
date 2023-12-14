@@ -52,7 +52,7 @@
                     <div class="card-body">
                         <h5 class="card-title">INSCRIPTION AUX SORTIES</h5>
                         <p class="card-text">Inscrivez-vous facilement à nos prochaines sorties et ajoutez les membres de votre famille ou vos comptes associés.</p>
-                        <a href="/licencie/inscription-sortie" class="btn btn-primary">BIENTOT DISPONIBLE</a>
+                        <a href="/licencie/inscription-sortie" class="btn btn-primary">Accéder</a>
                     </div>
                 </div>
             </div>

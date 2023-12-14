@@ -22,9 +22,7 @@
 
     <p class="libelle">Adresse : <span class="val">17 Avenue de la Marne, 65000 Tarbes </span> </p>
 
-    <p class="libelle">Numéro de téléphone :<span class="val"></span></p>
-
-    <p class="libelle">Directeur de la publication (nom du président de l’association) :<span class="val"></span></p></p>
+    <p class="libelle">Directeur de la publication (nom du président de l’association) : <span class="val">Fabien DUBREUIL</span></p></p>
 
     <p class="libelle">Développeur du site internet : <span class="val">Mathieu FOURTANÉ</span></p>
 

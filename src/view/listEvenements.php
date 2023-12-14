@@ -30,7 +30,6 @@
             <h3>Liste des évènements (affichés sur le site internet)</h3>
             <div>
                 <a href="/admin/evenements/new"><button title="Enregistrer un évènement" class="btn btn-dark me-2" type="button"><i class="bi bi-plus-circle"></i></button></a>
-                <button disabled title="Exporter en .csv" class="btn btn-dark" type="button"><i class="bi bi-file-earmark-excel"></i></button>
             </div>
         </div>
         <table class="table">

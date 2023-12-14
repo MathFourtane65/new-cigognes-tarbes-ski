@@ -16,6 +16,10 @@
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 
+    <!-- Inclusion de SheetJS -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+
+
 
 
 </head>
@@ -25,18 +29,45 @@
     <!-- <h1>LICENCIES</h1> -->
     <div class="container tableau-inscriptions">
 
+        <?php if (isset($_GET['success'])) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?php
+                if ($_GET['success'] == 'delete') {
+                    echo "Suppression de l'inscription réussie.";
+                } elseif ($_GET['success'] == 'inscription') {
+                    echo "Inscription du licencié à la sortie réussie. Un mail de confirmation lui a été envoyé.";
+                }
+                ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['error'])) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php
+                if ($_GET['error'] == 'failed_delete') {
+                    echo "Erreur lors de la suppression de l'inscription.";
+                } elseif ($_GET['error'] == 'fail_inscription') {
+                    echo "Erreur lors de l'inscription du licencié à la sortie.";
+                }
+                ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+
+
         <!-- Barre d'outils -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <a href="/admin/sorties"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
 
-            <h3>Liste des inscrits <strong><?= htmlspecialchars($sortie['nom']), ' (', date('d/m/Y', strtotime ($sortie['date'])), ')' ?></strong></h3>
+            <h3>Liste des inscrits <strong><?= htmlspecialchars($sortie['nom']), ' (', date('d/m/Y', strtotime($sortie['date'])), ')' ?></strong></h3>
             <div>
-                <a href="/admin/sorties/inscriptions/new"><button title="Enregistrer une inscription" class="btn btn-dark me-2" type="button"><i class="bi bi-plus-circle"></i></button></a>
-                <button disabled title="Exporter en .csv" class="btn btn-dark  me-2" type="button"><i class="bi bi-file-earmark-excel"></i></button>
+                <!-- <a href="/admin/sorties/inscriptions/new"><button title="Enregistrer une inscription" class="btn btn-dark me-2" type="button"><i class="bi bi-ui-checks"></i></button></a> -->
+                <button id="export-excel-licencies" title="Exporter en .csv" class="btn btn-dark  me-2" type="button"><i class="bi bi-file-earmark-excel"></i></button>
 
             </div>
         </div>
-        <table class="table">
+        <table class="table"  id="tableau-inscrits">
             <thead class="table-info">
                 <tr>
                     <!-- <th>#</th> -->
@@ -62,10 +93,11 @@
                         <!-- <td><?= htmlspecialchars($inscrit['id']) ?></td> -->
                         <td><?= htmlspecialchars($inscrit['nom']) ?></td>
                         <td><?= htmlspecialchars($inscrit['prenom']) ?></td>
-                        <td><?= date('d/m/Y', strtotime ($inscrit['date_naissance'])) ?></td>
+                        <td><?= date('d/m/Y', strtotime($inscrit['date_naissance'])) ?></td>
                         <td><?= htmlspecialchars($inscrit['mail']) ?></td>
                         <td><?= htmlspecialchars($inscrit['telephone']) ?></td>
-                        <td><?= $inscrit['bus'] == 1 ? 'OUI' : 'NON' ?></td>                        <td><?= htmlspecialchars($inscrit['lieu_bus']) ?></td>
+                        <td><?= $inscrit['bus'] == 1 ? 'OUI' : 'NON' ?></td>
+                        <td><?= htmlspecialchars($inscrit['lieu_bus']) ?></td>
                         <td><?= htmlspecialchars($inscrit['commentaire_licencie']) ?></td>
                         <td class="buttons-actions">
                             <!-- <button type="button" class="btn btn-danger">Supprimer</button> -->
@@ -137,6 +169,49 @@
             });
         });
     </script>
+
+    <script>
+const exportButton = document.getElementById('export-excel-licencies');
+const table = document.getElementById('tableau-inscrits');
+
+exportButton.addEventListener('click', () => {
+    // Clone the table for manipulation
+    let clonedTable = table.cloneNode(true);
+
+    // Convert date format in cloned table
+    $(clonedTable).find('tbody tr').each(function () {
+        // Assuming date is in 3rd column (index 2)
+        let dateCell = $(this).find('td').eq(2);
+        let dateText = dateCell.text();
+
+        // Convert date to 'YYYY-MM-DD' format
+        let convertedDate = convertDateToISO(dateText);
+        dateCell.text(convertedDate);
+    });
+
+    // Create worksheet from cloned table
+    const wb = XLSX.utils.table_to_book(clonedTable, {
+        sheet: 'liste_inscrits',
+    });
+
+    // Get the first worksheet
+    var ws = wb.Sheets[wb.SheetNames[0]];
+
+    // Hide 'Actions' column - replace 8 with the actual index of your column
+    if (!ws['!cols']) ws['!cols'] = [];
+    ws['!cols'][8] = { hidden: true };
+
+    // Export to file (start a download)
+    XLSX.writeFile(wb, 'liste_inscrits.xlsx');
+});
+
+function convertDateToISO(dateStr) {
+    // Assuming format is 'DD/MM/YYYY'
+    let parts = dateStr.split('/');
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+}
+    </script>
+
 
 
 

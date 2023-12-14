@@ -4,14 +4,14 @@ class ArticleController
     private $articleModel;
     private $imageModel;
     private $associationArticlesImagesModel;
-private $actualitesFlashModel;
+    private $actualitesFlashModel;
 
     public function __construct($articleModel, $imageModel, $associationArticlesImagesModel, $actualitesFlashModel)
     {
         $this->articleModel = $articleModel;
         $this->imageModel = $imageModel;
         $this->associationArticlesImagesModel = $associationArticlesImagesModel;
-$this->actualitesFlashModel = $actualitesFlashModel;
+        $this->actualitesFlashModel = $actualitesFlashModel;
     }
 
     public function showListeArticles()
@@ -56,11 +56,13 @@ $this->actualitesFlashModel = $actualitesFlashModel;
             $articleId = $this->articleModel->getLastInsertId();
 
             // Vérifiez si les fichiers sont correctement téléchargés avant de les enregistrer
-            foreach ($_FILES['images']['error'] as $error) {
-                if ($error != UPLOAD_ERR_OK) {
-                    // Gérer l'erreur ici (par exemple, en redirigeant avec un message d'erreur)
-                    header('Location: /admin/articles/new?error=failed_upload');
-                    exit();
+            if (isset($_FILES['images']) && $_FILES['images']['error'][0] != UPLOAD_ERR_NO_FILE) {
+                foreach ($_FILES['images']['error'] as $error) {
+                    if ($error != UPLOAD_ERR_OK) {
+                        // Gérer l'erreur ici
+                        header('Location: /admin/articles/new?error=failed_upload');
+                        exit();
+                    }
                 }
             }
 
@@ -102,7 +104,7 @@ $this->actualitesFlashModel = $actualitesFlashModel;
                 }
             }
 
-            header('Location: /admin/articles/new?success=create');
+            header('Location: /admin/articles?success=create');
         } else {
             header('Location: /admin/articles/new?error=failed_create');
         }
@@ -167,4 +169,46 @@ $this->actualitesFlashModel = $actualitesFlashModel;
 
         require '../src/view/actualitesDetailsPage.php';
     }
+
+    public function showUpdateArticleForm()
+    {
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            header("Location: /connexion-admin");
+            exit();
+        }
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+        $article = $this->articleModel->getArticleByIdWithImages($id);
+
+        if (!$article) {
+            // Gérer l'erreur si l'article n'existe pas
+            return;
+        }
+
+        require '../src/view/update-article.php';
+    }
+
+    public function processUpdateArticle()
+    {
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            header("Location: /connexion-admin");
+            exit();
+        }
+
+        // Récupération des données du formulaire avec validation
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $titre = filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_SPECIAL_CHARS);
+        $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_SPECIAL_CHARS);
+        $contenu = filter_input(INPUT_POST, 'contenu', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $updated = $this->articleModel->updateOne($id, $titre, $date, $contenu);
+
+        if ($updated) {
+            header('Location: /admin/articles/update?id=' . $id . '&success=update');
+        } else {
+            header('Location: /admin/articles/update?id=' . $id . '&error=failed_update');
+        }
+    }
+
+
 }

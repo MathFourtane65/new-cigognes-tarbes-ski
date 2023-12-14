@@ -26,10 +26,10 @@
 
         <!-- Barre d'outils -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="my-0">Liste des moniteurs (affichés sur le site internet)</h3>
+        <a href="/admin"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+            <h3>Liste des moniteurs (affichés sur le site internet)</h3>
             <div>
                 <a href="/admin/moniteurs/new"><button title="Enregistrer un moniteur" class="btn btn-dark me-2" type="button"><i class="bi bi-plus-circle"></i></button></a>
-                <button disabled title="Exporter en .csv" class="btn btn-dark" type="button"><i class="bi bi-file-earmark-excel"></i></button>
             </div>
         </div>
         <table class="table">

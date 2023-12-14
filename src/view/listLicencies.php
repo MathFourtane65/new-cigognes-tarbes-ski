@@ -80,7 +80,7 @@
                         <td><?= htmlspecialchars($licencie['prenom']) ?></td>
                         <td><?= htmlspecialchars($licencie['date_naissance']) ?></td>
                         <td><?= htmlspecialchars($licencie['mail']) ?></td>
-                        <td>'<?= htmlspecialchars($licencie['telephone']) ?></td>
+                        <td><?= htmlspecialchars($licencie['telephone']) ?></td>
                         <td><?= htmlspecialchars($licencie['identifiant']) ?></td>
                         <!-- <td><?= htmlspecialchars($licencie['code_postal']) ?></td> -->
                         <!-- <td><?= htmlspecialchars($licencie['ville']) ?></td> -->

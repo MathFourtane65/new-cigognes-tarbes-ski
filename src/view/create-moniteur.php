@@ -35,14 +35,20 @@
 
             <!-- Barre d'outils -->
             <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="my-0">Enregistrer un Moniteur (à afficher sur le site internet)</h3>
+            <a href="/admin/moniteurs"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+
+            <h3>Enregistrer un Moniteur (à afficher sur le site internet)</h3>
             <div>
             <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
             </div>
         </div>
 
         <form class="row g-3 needs-validation" action="/create-moniteur-process" method="post" enctype="multipart/form-data">
-            <h5 class="titre-section-form">Infos</h5>
+        <div class="alert alert-primary" role="alert">
+                Seuls les informations renseignées apparaîtront sur le site internet.
+            </div>
+    
+        <h5 class="titre-section-form">Infos</h5>
             <div class="col-md-5">
                 <label for="nom" class="form-label">Nom<span class="champ-obligatoire">*</span></label>
                 <input type="text" class="form-control" id="nom" name="nom" required>
@@ -63,7 +69,7 @@
 
             <div class="col-12">
                 <button type="submit" class="btn btn-success">Enregistrer</button>
-                <a href="/admin/moniteurs"><button class="btn btn-danger" type="button">Annuler / Retour</button></a>
+                <a href="/admin/moniteurs"><button class="btn btn-danger" type="button">Annuler</button></a>
             </div>
         </form>
     </div>

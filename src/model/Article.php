@@ -182,4 +182,19 @@ class Article
 
         return $result;
     }
+
+    public function updateOne($id, $titre, $date, $contenu)
+    {
+        $stmt = $this->db->prepare("
+            UPDATE articles 
+            SET titre = :titre, date = :date, contenu = :contenu
+            WHERE id = :id
+        ");
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":titre", $titre);
+        $stmt->bindParam(":date", $date);
+        $stmt->bindParam(":contenu", $contenu);
+
+        return $stmt->execute();
+    }
 }

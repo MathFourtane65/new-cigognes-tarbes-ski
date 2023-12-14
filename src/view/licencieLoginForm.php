@@ -51,7 +51,7 @@
                             <input type="password" class="form-control" name="password" required>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">BIENTÔT DISPONIBLE</button>
+                            <button type="submit" class="btn btn-primary">Se connecter</button>
                         </div>
                     </form>
                 </div>

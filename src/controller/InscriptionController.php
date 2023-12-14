@@ -157,4 +157,149 @@ class InscriptionController
         }
         require '../src/view/listInscriptions.php';
     }
+
+    public function showInscriptionSortieAdmin()
+    {
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            header("Location: /connexion-admin");
+            exit();
+        }
+        $licencies = $this->licencieModel->getAllLicenciesSortedByLastName();
+
+
+        $sortiesDisponibles = $this->sortieModel->getAllSortiesWhereDateNotPassed();
+
+
+
+        require '../src/view/admin-inscription-sortie-p1.php';
+    }
+
+    public function showInscriptionSortieAdminDetails()
+    {
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            header("Location: /connexion-admin");
+            exit();
+        }
+
+        $id_sortie_selectionnee = filter_input(INPUT_POST, 'id_sortie_selectionnee', FILTER_SANITIZE_NUMBER_INT);
+        if (!$id_sortie_selectionnee) {
+            // Gérer l'erreur si l'ID de la sortie n'est pas fourni
+            header("Location: /admin/sorties/inscriptions/new?error=no_sortie_selected");
+            exit();
+        }
+
+        $id_licencie_selectionnee = filter_input(INPUT_POST, 'id_licencie_selectionnee', FILTER_SANITIZE_NUMBER_INT);
+        if (!$id_licencie_selectionnee) {
+            // Gérer l'erreur si l'ID du licencié n'est pas fourni
+            header("Location: /admin/sorties/inscriptions/new?error=no_licencie_selected");
+            exit();
+        }
+
+        $licencie = $this->licencieModel->getLicencie($id_licencie_selectionnee);
+        $sortie = $this->sortieModel->getSortie($id_sortie_selectionnee);
+        $inscriptionsSortie = $this->inscriptionModel->getAllInscriptionBySortie($id_sortie_selectionnee);
+        $licencieInscrit = $this->inscriptionModel->isLicencieInscrit($id_licencie_selectionnee, $id_sortie_selectionnee);
+
+        $reservedBusPlaces = $this->inscriptionModel->countReservedBusPlaces($id_sortie_selectionnee);
+        $availableBusPlaces = $sortie['places_bus'] - $reservedBusPlaces;
+        $isBusUnlimited = is_null($sortie['places_bus']);
+        $isBusFull = !$isBusUnlimited && $availableBusPlaces <= 0;
+
+
+        require '../src/view/admin-inscription-sortie-p2.php';
+    }
+
+    public function processInscriptionByAdmin()
+    {
+        if (!isset($_SESSION['admin_logged_in']) || !$_SESSION['admin_logged_in']) {
+            header("Location: /connexion-admin");
+            exit();
+        }
+
+        $sortieId = filter_input(INPUT_POST, 'sortie_id', FILTER_SANITIZE_NUMBER_INT);
+        $licencieId = filter_input(INPUT_POST, 'licencie_id', FILTER_SANITIZE_NUMBER_INT);
+        $participe = filter_input(INPUT_POST, 'participe', FILTER_SANITIZE_SPECIAL_CHARS);
+        $bus = filter_input(INPUT_POST, 'bus', FILTER_SANITIZE_SPECIAL_CHARS) === 'OUI' ? 1 : 0;
+        $lieuBus = $bus ? filter_input(INPUT_POST, 'lieu_bus', FILTER_SANITIZE_SPECIAL_CHARS) : null;
+        $commentaire = filter_input(INPUT_POST, 'commentaire_licencie', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if ($participe === 'OUI') {
+            $success = $this->inscriptionModel->addInscription(
+                $licencieId,
+                $sortieId,
+                $bus,
+                $lieuBus,
+                $montantLicencie = 0, // À déterminer
+                $paye = 0, // À déterminer
+                $commentaire,
+                $commentaireAdmin = '' // Mettre une chaîne vide si vous n'avez pas ce champ
+            );
+
+            if ($success) {
+                // Gestion de la réponse réussie
+
+                // Récupérer les informations du licencié et de la sortie
+                $licencieData = $this->licencieModel->getLicencie($licencieId);
+                $sortieDetails = $this->sortieModel->getSortie($sortieId);
+
+                // Préparer le message de l'email
+                $nomComplet = $licencieData['prenom'] . ' ' . $licencieData['nom'];
+                $message = "Bonjour, \n";
+                $message .= "Votre inscription, par un Administrateur, pour la sortie " . $sortieDetails['nom'] . " du " . date('d/m/Y', strtotime($sortieDetails['date'])) . " à " . $sortieDetails['lieu'] . " est bien confirmée. \n";
+                if ($bus) {
+                    $message .= "Prend le bus: Oui\n";
+                    $message .= "Arrêt de bus: " . $lieuBus . "\n";
+                } else {
+                    $message .= "Prend le bus: Non\n";
+                }
+                if ($commentaire) {
+                    $message .= "Commentaire: " . $commentaire . "\n";
+                }
+
+                // Envoi de l'email
+                if ($licencieData['mail']) {
+                    $to = $licencieData['mail']; // Email du licencié
+
+                } else {
+                    $parentId = $this->relationsComptesModel->getParentIdByChildId($licencieId);
+                    $dataParent = $this->licencieModel->getLicencie($parentId);
+                    $to = $dataParent['mail'];
+                }
+                $subject = "Confirmation inscription sortie CIGOGNES TARBES SKI";
+                $from = "contact@cigognes-tarbes-ski.fr";
+                $fromName = "Cigognes Tarbes Ski";
+                EmailSender::sendMail($to, $subject, $message, $from, $fromName);
+
+                $_SESSION['success_messages'][] = "Le licencié ID: $licencieId a été inscrit avec succès à la sortie ID: $sortieId";
+                header('Location: /admin/sorties/inscriptions?id=' . htmlspecialchars($sortieId) . '?&success=inscription');
+            } else {
+                // Gestion de l'échec de l'inscription
+                $_SESSION['error_messages'][] = "Erreur lors de l'inscription du licencié ID: $licencieId";
+                header('Location: /admin/sorties/inscriptions?id=' . htmlspecialchars($sortieId) . '?&error=fail_inscription');
+            }
+        } else {
+            // Gérer le cas où le licencié n'est pas inscrit
+            header('Location: /admin/sorties/inscriptions?id=' . htmlspecialchars($sortieId) . '');
+        }
+        exit();
+    }
+
+    public function deleteInscription()
+    {
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            header("Location: /connexion-admin");
+            exit();
+        }
+
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $inscriptionDetails = $this->inscriptionModel->getInscription($id);
+
+        $deleted = $this->inscriptionModel->deleteOne($id);
+
+        if ($deleted) {
+            header('Location: /admin/sorties/inscriptions?id=' . htmlspecialchars($inscriptionDetails['sortie_id']) . '&success=delete');
+        } else {
+            header('Location: /admin/sorties/inscriptions?id=' . htmlspecialchars($inscriptionDetails['sortie_id']) . '&error=failed_delete');
+        }
+    }
 }

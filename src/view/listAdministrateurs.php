@@ -23,7 +23,7 @@
 
             </div><?php endif; ?>
 
-            <?php if (isset($_GET['ERROR'])) : ?>
+        <?php if (isset($_GET['ERROR'])) : ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php
                 if ($_GET['ERROR'] == 'failed_delete') echo "Erreur lors de la suppression de l'administrateur.";
@@ -33,7 +33,7 @@
             </div><?php endif; ?>
 
 
-            
+
 
 
         <!-- Barre d'outils -->

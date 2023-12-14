@@ -17,7 +17,11 @@
         <?php if (isset($_GET['success'])) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php
-                if ($_GET['success'] == 'delete') echo "Suppression de la sortie réussie.";
+                if ($_GET['success'] == 'delete') {
+                    echo "Suppression de l'article réussie.";
+                } else if ($_GET['success'] == 'create') {
+                    echo "Création de l'article réussie.";
+                }
                 ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
@@ -26,16 +30,17 @@
 
         <!-- Barre d'outils -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="my-0">Liste des articles</h3>
+            <a href="/admin"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+
+            <h3>Liste des articles</h3>
             <div>
                 <a href="/admin/articles/new"><button title="Enregistrer un article" class="btn btn-dark me-2" type="button"><i class="bi bi-plus-circle"></i></button></a>
-                <button disabled title="Exporter en .csv" class="btn btn-dark" type="button"><i class="bi bi-file-earmark-excel"></i></button>
             </div>
         </div>
         <table class="table">
             <thead class="table-info">
                 <tr>
-                    <th>#</th>
+                    <!-- <th>#</th> -->
                     <th>Titre</th>
                     <th>Date</th>
                     <!-- <th>Nombre d'images</th> -->
@@ -45,11 +50,11 @@
             <tbody>
                 <?php foreach ($articles as $article) : ?>
                     <tr>
-                        <td><?= htmlspecialchars($article['id']) ?></td>
+                        <!-- <td><?= htmlspecialchars($article['id']) ?></td> -->
                         <td><?= htmlspecialchars($article['titre']) ?></td>
                         <td><?= htmlspecialchars($article['date']) ?></td>
                         <td class="buttons-actions">
-                            <!-- <a href="/admin/update-licencie?id=<?= $article['id'] ?>" class="btn btn-warning me-2" title="Mettre à jour le licencié"><i class="bi bi-pencil"></i></a> -->
+                            <a href="/admin/articles/update?id=<?= $article['id'] ?>" class="btn btn-warning me-2" title="Mettre à jour l'article"><i class="bi bi-pencil"></i></a>
                             <button title="Supprimer l'article" type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteArticleModal" data-id="<?= $article['id'] ?>"> <i class="bi bi-trash"></i></button>
                         </td>
                         <!-- Affichez d'autres informations de licencié si nécessaire -->

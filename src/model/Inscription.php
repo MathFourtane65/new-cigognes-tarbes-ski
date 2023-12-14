@@ -91,5 +91,21 @@ class Inscription
         return $stmt->fetchColumn();
     }
 
+
+    public function getInscription($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM inscriptions WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
+    public function deleteOne($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM inscriptions WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        return $stmt->execute();
+    }
     // ... Ajouter d'autres méthodes CRUD si nécessaire ...
 }

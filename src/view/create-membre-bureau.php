@@ -13,8 +13,8 @@
 <body>
 
     <div class="container create-membre-bureau-form">
-    
-    <?php if (isset($_GET['success'])) : ?>
+
+        <?php if (isset($_GET['success'])) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php
                 if ($_GET['success'] == 'create') echo "Création du moniteur réussie.";
@@ -23,7 +23,7 @@
 
             </div><?php endif; ?>
 
-            <?php if (isset($_GET['error'])) : ?>
+        <?php if (isset($_GET['error'])) : ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php
                 if ($_GET['error'] == 'failed_create') echo "Erreur lors de la création du moniteur.";
@@ -33,17 +33,24 @@
             </div><?php endif; ?>
 
 
-            <!-- Barre d'outils -->
-            <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="my-0">Enregistrer un membre du bureau (à afficher sur le site internet)</h3>
+        <!-- Barre d'outils -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="/admin"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+
+            <h3>Enregistrer un membre du bureau (à afficher sur le site internet)</h3>
             <div>
-            <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
+                <p class="consigne-formulaire">Les champs avec <span class="champ-obligatoire">*</span> sont obligatoires.</p>
             </div>
         </div>
 
         <form class="row g-3 needs-validation" action="/create-membre-bureau-process" method="post" enctype="multipart/form-data">
-            <h5 class="titre-section-form">Infos</h5>
             
+        <div class="alert alert-primary" role="alert">
+                Seuls les informations renseignées apparaîtront sur le site internet.
+            </div>
+
+            <h5 class="titre-section-form">Infos</h5>
+
             <div class="col-md-5">
                 <label for="nom" class="form-label">Nom<span class="champ-obligatoire">*</span></label>
                 <input type="text" class="form-control" id="nom" name="nom" required>
@@ -74,7 +81,7 @@
 
             <div class="col-12">
                 <button type="submit" class="btn btn-success">Enregistrer</button>
-                <a href="/admin/bureau"><button class="btn btn-danger" type="button">Annuler / Retour</button></a>
+                <a href="/admin/bureau"><button class="btn btn-danger" type="button">Annuler</button></a>
             </div>
         </form>
     </div>
