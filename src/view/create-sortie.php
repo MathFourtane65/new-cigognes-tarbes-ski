@@ -60,7 +60,7 @@
 
             <h4 class="titre-section-form">Inscriptions</h4>
             <div class="col-md-12">
-                <label for="date_fin_inscriptions" class="form-label">Date de fin d'inscriptions</label>
+                <label for="date_fin_inscriptions" class="form-label">Date et Heure de fin d'inscriptions</label>
                 <input type="datetime-local" class="form-control" id="date_fin_inscriptions" name="date_fin_inscriptions">
             </div>
             <div class="col-md-4">

@@ -29,7 +29,7 @@
 
                     <h3 class="titre">Connexion Licencié</h3>
 
-                    <p><a href="/fichiers/XXXXXXXX.pdf" class="btn btn-primary btn-lg disabled" download>Guide d'utilisation LICENCIE (pdf) <br>BIENTOT DISPONIBLE</a></p>
+                    <p><a href="/fichiers/XXXXXXXX.pdf" download style="pointer-events: none; color: gray;">Guide d'utilisation LICENCIE (.pdf) <br><strong>BIENTOT DISPONIBLE</strong></a></p>
                 </div>
 
                 <?php if (isset($_GET['error'])) : ?>

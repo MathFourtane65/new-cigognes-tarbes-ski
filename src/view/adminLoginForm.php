@@ -23,7 +23,7 @@
 
                     <h3 class="titre">Connexion Administrateur</h3>
 
-                    <p><a href="/fichiers/XXXXXXXX.pdf" class="btn btn-primary btn-lg disabled" download>Guide d'utilisation ADMIN (pdf) <br>BIENTOT DISPONIBLE</a></p>
+                    <p><a href="/fichiers/guide_site_cigognes_espace_admin.pdf" download>Guide d'utilisation ADMIN (.pdf)</a></p>
 
                 </div>
 
@@ -49,6 +49,7 @@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Se connecter</button>
                         </div>
+
                     </form>
                 </div>
                 <div class="card-footer text-center">

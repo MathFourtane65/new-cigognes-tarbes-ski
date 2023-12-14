@@ -35,7 +35,7 @@
 
         <!-- Barre d'outils -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <a href="/admin"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+            <a href="/admin/bureau"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
 
             <h3>Enregistrer un membre du bureau (à afficher sur le site internet)</h3>
             <div>
