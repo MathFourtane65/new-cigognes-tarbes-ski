@@ -144,3 +144,9 @@ CREATE TABLE inscriptions (
     FOREIGN KEY (licencie_id) REFERENCES licencies(id),
     FOREIGN KEY (sortie_id) REFERENCES sorties(id)
 );
+
+
+/* ---------------------------- MISE A JOUR BDD 01/02/2024 ------------------------ */
+
+ALTER TABLE sorties
+ADD COLUMN arrets_bus VARCHAR(255);

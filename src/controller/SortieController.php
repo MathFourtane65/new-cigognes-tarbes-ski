@@ -47,8 +47,9 @@ class SortieController
         $places_bus = $unlimitedPlaces ? null : filter_input(INPUT_POST, 'places_bus', FILTER_SANITIZE_NUMBER_INT);
         //$places_bus = filter_input(INPUT_POST, 'places_bus', FILTER_SANITIZE_NUMBER_INT);
         $heure_depart_bus = filter_input(INPUT_POST, 'heure_depart_bus', FILTER_SANITIZE_SPECIAL_CHARS);
+        $arrets_bus = filter_input(INPUT_POST, 'arrets_bus', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        $created = $this->sortieModel->createSortie($nom, $lieu, $date, $date_fin_inscriptions, $places_bus, $heure_depart_bus);
+        $created = $this->sortieModel->createSortie($nom, $lieu, $date, $date_fin_inscriptions, $places_bus, $heure_depart_bus, $arrets_bus);
 
         if ($created) {
             header('Location: /admin/new-sortie?success=create');
@@ -107,12 +108,13 @@ class SortieController
         $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_SPECIAL_CHARS);
         $date_fin_inscriptions = filter_input(INPUT_POST, 'date_fin_inscriptions', FILTER_SANITIZE_SPECIAL_CHARS);
         $heure_depart_bus = filter_input(INPUT_POST, 'heure_depart_bus', FILTER_SANITIZE_SPECIAL_CHARS);
+        $arrets_bus = filter_input(INPUT_POST, 'arrets_bus', FILTER_SANITIZE_SPECIAL_CHARS);
 
         $unlimitedPlaces = isset($_POST['unlimited_places']);
         $places_bus = $unlimitedPlaces ? null : filter_input(INPUT_POST, 'places_bus', FILTER_SANITIZE_NUMBER_INT);
 
         // Mise à jour de la sortie avec le modèle SortieModel
-        $updated = $this->sortieModel->updateSortie($id, $nom, $lieu, $date, $date_fin_inscriptions, $places_bus, $heure_depart_bus);
+        $updated = $this->sortieModel->updateSortie($id, $nom, $lieu, $date, $date_fin_inscriptions, $places_bus, $heure_depart_bus, $arrets_bus);
 
         if ($updated) {
             header('Location: /admin/sorties/update?id=' . $id . '&success=update');

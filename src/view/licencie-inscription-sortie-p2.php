@@ -96,13 +96,8 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="date_naissance" class="form-label">Si OUI, quel arrêt ?<!--<span class="champ-obligatoire">*</span>--></label>
-                            <select id="licencie[<?= $licencie['id'] ?>][lieu_bus]" name="licencie[<?= $licencie['id'] ?>][lieu_bus]" class="form-select">
-                                <option value="">--- Choisir une option ---</option>
-                                <option value="Tarbes">Tarbes</option>
-                                <option value="Lourdes">Lourdes</option>
-                                <option value="Argelès-Gazost">Argelès-Gazost</option>
-                            </select>
+                            <label for="date_naissance" class="form-label">Si OUI, quel arrêt ?<span class="liste-arrets"> (Choisir parmi : <?= htmlspecialchars($sortie['arrets_bus']) ?>) </span></label>
+                            <input type="text" id="licencie[<?= $licencie['id'] ?>][lieu_bus]" name="licencie[<?= $licencie['id'] ?>][lieu_bus]" class="form-control">
                         </div>
                     <?php
                     } else {
@@ -118,12 +113,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="date_naissance" class="form-label">Si OUI, quel arrêt ?<!--<span class="champ-obligatoire">*</span>--></label>
-                            <select id="licencie[<?= $licencie['id'] ?>][lieu_bus]" name="licencie[<?= $licencie['id'] ?>][lieu_bus]" class="form-select" disabled>
-                                <option value="">--- Choisir une option ---</option>
-                                <option value="Tarbes">Tarbes</option>
-                                <option value="Lourdes">Lourdes</option>
-                                <option value="Argelès-Gazost">Argelès-Gazost</option>
-                            </select>
+                            <input type="text" id="licencie[<?= $licencie['id'] ?>][lieu_bus]" name="licencie[<?= $licencie['id'] ?>][lieu_bus]" class="form-control">
                         </div>
 
                     <?php
@@ -170,12 +160,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="date_naissance" class="form-label">Si OUI, quel arrêt ?<!--<span class="champ-obligatoire">*</span>--></label>
-                                <select id="licencie[<?= $enfant['id_enfant'] ?>][lieu_bus]" name="licencie[<?= $enfant['id_enfant'] ?>][lieu_bus]" class="form-select">
-                                    <option value="">--- Choisir une option ---</option>
-                                    <option value="Tarbes">Tarbes</option>
-                                    <option value="Lourdes">Lourdes</option>
-                                    <option value="Argelès-Gazost">Argelès-Gazost</option>
-                                </select>
+                                <input type="text" id="licencie[<?= $enfant['id_enfant'] ?>][lieu_bus]" name="licencie[<?= $enfant['id_enfant'] ?>][lieu_bus]"  class="form-control">
                             </div>
                         <?php
                         } else {
@@ -190,12 +175,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="date_naissance" class="form-label">Si OUI, quel arrêt ?<!--<span class="champ-obligatoire">*</span>--></label>
-                                <select id="licencie[<?= $enfant['id_enfant'] ?>][lieu_bus]" name="licencie[<?= $enfant['id_enfant'] ?>][lieu_bus]" class="form-select" disabled>
-                                    <option value="">--- Choisir une option ---</option>
-                                    <option value="Tarbes">Tarbes</option>
-                                    <option value="Lourdes">Lourdes</option>
-                                    <option value="Argelès-Gazost">Argelès-Gazost</option>
-                                </select>
+                                <input type="text" id="licencie[<?= $enfant['id_enfant'] ?>][lieu_bus]" name="licencie[<?= $enfant['id_enfant'] ?>][lieu_bus]"  class="form-control">
                             </div>
 
                         <?php

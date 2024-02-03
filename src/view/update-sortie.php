@@ -76,6 +76,11 @@
                 <input type="time" class="form-control" id="heure_depart_bus" name="heure_depart_bus" value="<?php echo $sortie['heure_depart_bus']; ?>">
             </div>
 
+            <div class="col-md-4">
+                <label for="arrets_bus" class="form-label">Arrêt(s) du bus (ex: Tarbes / Lourdes / ...)</label>
+                <input type="text" placeholder="Tarbes / Lourdes / Argeles" class="form-control" id="arrets_bus" name="arrets_bus" value="<?php echo $sortie['arrets_bus']; ?>">
+            </div>
+
             <div class="col-md-8">
                 <input class="form-check-input" type="checkbox" id="unlimited_places" name="unlimited_places" <?php echo is_null($sortie['places_bus']) ? 'checked' : ''; ?>>
                 <label class="form-check-label fw-bold" for="unlimited_places">

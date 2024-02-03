@@ -46,3 +46,8 @@
     color: red;
     font-weight: bold;
 }
+
+.liste-arrets {
+    font-weight: bold;
+    font-style: italic;
+}

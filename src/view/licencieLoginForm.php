@@ -22,14 +22,9 @@
                 </div>
 
                 <div class="card-header text-center">
-                    <!-- <div class="alert alert-info" role="alert">
-                        La connexion des licenciés est bientôt disponible
-                    </div> -->
                     <img src="/images/logo.png" class="img-fluid logo-form-conn-licencie" alt="Club Logo" />
 
                     <h3 class="titre">Connexion Licencié</h3>
-
-                    <p><a href="/fichiers/XXXXXXXX.pdf" download style="pointer-events: none; color: gray;">Guide d'utilisation LICENCIE (.pdf) <br><strong>BIENTOT DISPONIBLE</strong></a></p>
                 </div>
 
                 <?php if (isset($_GET['error'])) : ?>

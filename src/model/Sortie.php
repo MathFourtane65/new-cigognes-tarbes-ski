@@ -10,11 +10,11 @@ class Sortie
     }
 
     // Ajoute une nouvelle sortie
-    public function createSortie($nom, $lieu, $date, $date_fin_inscriptions, $places_bus, $heure_depart_bus)
+    public function createSortie($nom, $lieu, $date, $date_fin_inscriptions, $places_bus, $heure_depart_bus, $arrets_bus)
     {
         $stmt = $this->db->prepare("
             INSERT INTO sorties (nom, lieu, date, date_fin_inscriptions, places_bus, heure_depart_bus) 
-            VALUES (:nom, :lieu, :date, :date_fin_inscriptions, :places_bus, :heure_depart_bus)
+            VALUES (:nom, :lieu, :date, :date_fin_inscriptions, :places_bus, :heure_depart_bus, :arrets_bus)
         ");
         $stmt->bindParam(":nom", $nom);
         $stmt->bindParam(":lieu", $lieu);
@@ -22,6 +22,7 @@ class Sortie
         $stmt->bindParam(":date_fin_inscriptions", $date_fin_inscriptions);
         $stmt->bindParam(":places_bus", $places_bus);
         $stmt->bindParam(":heure_depart_bus", $heure_depart_bus);
+        $stmt->bindParam(":arrets_bus", $arrets_bus);
 
         return $stmt->execute();
     }
@@ -36,11 +37,11 @@ class Sortie
     }
 
     // Update a sortie
-    public function updateSortie($id, $nom, $lieu, $date, $date_fin_inscriptions, $places_bus, $heure_depart_bus)
+    public function updateSortie($id, $nom, $lieu, $date, $date_fin_inscriptions, $places_bus, $heure_depart_bus, $arrets_bus)
     {
         $stmt = $this->db->prepare("
         UPDATE sorties 
-        SET nom = :nom, lieu = :lieu, date = :date, date_fin_inscriptions = :date_fin_inscriptions, places_bus = :places_bus, heure_depart_bus = :heure_depart_bus
+        SET nom = :nom, lieu = :lieu, date = :date, date_fin_inscriptions = :date_fin_inscriptions, places_bus = :places_bus, heure_depart_bus = :heure_depart_bus, arrets_bus = :arrets_bus
         WHERE id = :id
     ");
         $stmt->bindParam(":id", $id);
@@ -50,6 +51,8 @@ class Sortie
         $stmt->bindParam(":date_fin_inscriptions", $date_fin_inscriptions);
         $stmt->bindParam(":places_bus", $places_bus);
         $stmt->bindParam(":heure_depart_bus", $heure_depart_bus);
+        $stmt->bindParam(":arrets_bus", $arrets_bus);
+
         return $stmt->execute();
     }
 

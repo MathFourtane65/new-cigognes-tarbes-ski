@@ -6,6 +6,19 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
     <title>Espace Administrateur</title>
     <link rel="stylesheet" href="/css/view/listRelationsComptes.css">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+
+    <!-- jQuery (nécessaire pour DataTables) -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+
+    <!-- Inclusion de SheetJS -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+
 
 
 </head>
@@ -26,7 +39,7 @@
 
         <!-- Barre d'outils -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-        <a href="/admin/licencies"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
+            <a href="/admin/licencies"><button title="Retour" class="btn btn-dark" type="button"><i class="bi bi-arrow-left-circle"></i></button></a>
 
             <h3>Liste des relations "parents-enfants" des licenciés</h3>
             <div>
@@ -35,8 +48,8 @@
                 <button disabled title="Exporter en .csv" class="btn btn-dark" type="button"><i class="bi bi-file-earmark-excel"></i></button>
             </div>
         </div>
-        
-        <table class="table">
+
+        <table class="table" id="tableau-relations-licencies">
             <thead class="table-info">
                 <tr>
                     <th>#</th>
@@ -100,6 +113,21 @@
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/fr-FR.json',
+                },
+                "lengthMenu": [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "Tous"]
+                ],
+            });
+        });
+    </script>
+
 
 
 </body>

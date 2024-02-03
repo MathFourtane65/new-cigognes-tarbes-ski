@@ -91,21 +91,16 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="lieu_bus" class="form-label">Si OUI, quel arrêt ?<!--<span class="champ-obligatoire">*</span>--></label>
-                            <select id="lieu_bus" name="lieu_bus" class="form-select">
-                                <option value="">--- Choisir une option ---</option>
-                                <option value="Tarbes">Tarbes</option>
-                                <option value="Lourdes">Lourdes</option>
-                                <option value="Argelès-Gazost">Argelès-Gazost</option>
-                            </select>
+                            <label for="lieu_bus" class="form-label">Si OUI, quel arrêt ?<span class="liste-arrets"> (Choisir parmi : <?= htmlspecialchars($sortie['arrets_bus']) ?>) </span></label>
+                            <input type="text" id="lieu_bus" name="lieu_bus" class="form-control">
                         </div>
                     <?php
                     } else {
                         // Afficher les champs désactivés avec un message
                     ?>
                         <div class="col-md-4">
-                            <label for="bus" class="form-label">Si OUI, prend le bus ?<!--<span class="champ-obligatoire">*</span>--></label>
-                            <select id="bus" name="bus]" class="form-select" disabled>
+                            <label for="bus" class="form-label">Si OUI, prend le bus ?</label>
+                            <select id="bus" name="bus" class="form-select" disabled>
                                 <option value="">--- Choisir une option ---</option>
                                 <option value="OUI">OUI</option>
                                 <option value="NON">NON</option>
@@ -113,12 +108,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="lieu_bus" class="form-label">Si OUI, quel arrêt ?<!--<span class="champ-obligatoire">*</span>--></label>
-                            <select id="lieu_bus" name="lieu_bus" class="form-select" disabled>
-                                <option value="">--- Choisir une option ---</option>
-                                <option value="Tarbes">Tarbes</option>
-                                <option value="Lourdes">Lourdes</option>
-                                <option value="Argelès-Gazost">Argelès-Gazost</option>
-                            </select>
+                            <input type="text" id="lieu_bus" name="lieu_bus" class="form-control" disabled>
                         </div>
 
                     <?php
