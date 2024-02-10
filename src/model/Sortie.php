@@ -13,7 +13,7 @@ class Sortie
     public function createSortie($nom, $lieu, $date, $date_fin_inscriptions, $places_bus, $heure_depart_bus, $arrets_bus)
     {
         $stmt = $this->db->prepare("
-            INSERT INTO sorties (nom, lieu, date, date_fin_inscriptions, places_bus, heure_depart_bus) 
+            INSERT INTO sorties (nom, lieu, date, date_fin_inscriptions, places_bus, heure_depart_bus, arrets_bus) 
             VALUES (:nom, :lieu, :date, :date_fin_inscriptions, :places_bus, :heure_depart_bus, :arrets_bus)
         ");
         $stmt->bindParam(":nom", $nom);
